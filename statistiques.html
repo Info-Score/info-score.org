@@ -5,9 +5,18 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Statistiques — Info-Score</title>
   <meta name="description" content="Statistiques en temps réel des évaluations Info-Score : répartition des grades, scores par dimension, tendances mensuelles.">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <meta property="og:title" content="Statistiques — Info-Score">
+  <meta property="og:description" content="Statistiques en temps réel des évaluations Info-Score : répartition des grades, scores par dimension, tendances mensuelles.">
+  <meta property="og:image" content="https://info-score.org/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:type" content="image/png">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://info-score.org/statistiques.html">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Lora:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
   <style>
@@ -444,7 +453,7 @@
         labels: ['A', 'B', 'C', 'D', 'E', 'N'],
         datasets: [{
           data: [12.4, 24.1, 28.7, 19.3, 11.2, 4.3],
-          backgroundColor: ['#16a34a','#2563eb','#ca8a04','#ea580c','#dc2626','#64748b'],
+          backgroundColor: ['#2D8B46','#6BAD4B','#D4A017','#D4652A','#C42B2B','#6B6459'],
           borderWidth: 3, borderColor: '#ffffff',
         }]
       },
@@ -474,10 +483,10 @@
             label: 'Score moyen',
             data: [59.8, 60.4, 61.1, 62.0, 62.4, 62.4],
             type: 'line',
-            borderColor: '#ca8a04',
+            borderColor: '#D4A017',
             backgroundColor: 'rgba(202,138,4,.08)',
             tension: 0.4,
-            pointBackgroundColor: '#ca8a04',
+            pointBackgroundColor: '#D4A017',
             pointRadius: 5, pointBorderWidth: 2, pointBorderColor: '#fff',
             yAxisID: 'y2',
           }
