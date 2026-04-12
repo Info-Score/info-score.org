@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500" width="500" height="500">
+  <!-- Background -->
+  <rect width="500" height="500" fill="#ffffff"/>
+  <!-- Shield shape -->
+  <path d="M250 30 L440 107 L440 265 C440 368 356 454 250 484 C144 454 60 368 60 265 L60 107 Z" fill="#0f2b5b"/>
+  <!-- Letter i — dot -->
+  <circle cx="250" cy="164" r="31" fill="#ffffff"/>
+  <!-- Letter i — stem -->
+  <rect x="219" y="219" width="62" height="156" rx="23" fill="#ffffff"/>
+</svg>
