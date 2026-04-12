@@ -1,12 +1,12 @@
 /* ============================================================
-   Info-Score v2 — Design System
-   Institutionnel · Inter + Lora · Accent deep navy + gold
+   Info-Score v3 — Design System
+   Institutionnel · Space Grotesk · Accent deep navy
    ============================================================ */
 
 /* ---- Design tokens ---- */
 :root {
-  --font:         'Inter', system-ui, -apple-system, sans-serif;
-  --font-heading: 'Lora', Georgia, 'Times New Roman', serif;
+  --font:         'Space Grotesk', system-ui, -apple-system, sans-serif;
+  --font-heading: 'Space Grotesk', system-ui, -apple-system, sans-serif;
 
   /* Neutrals */
   --ink:       #0a0f1e;
@@ -14,14 +14,14 @@
   --ink-3:     #475569;
   --ink-4:     #64748b;
   --surface:   #ffffff;
-  --surface-2: #eef2f7;
-  --surface-3: #e2e8f2;
+  --surface-2: #f4f6f9;
+  --surface-3: #e6eaf0;
   --accent:    #0f2b5b;
-  --accent-h:  #1a3a6b;
+  --accent-h:  #163873;
   --gold:      #b5922b;
   --gold-light:#f7efd8;
-  --border:    #e2e8f0;
-  --border-2:  #cbd5e1;
+  --border:    #dfe4ec;
+  --border-2:  #c4cdd9;
 
   /* Grade palette — source de vérité : Pace */
   --ga: #2D8B46; --ga-bg: #edf7f0; --ga-bd: #a7d9b4;
@@ -36,7 +36,7 @@
   --container: 1100px;
   --r:         6px;
   --r-lg:      12px;
-  --r-xl:      20px;
+  --r-xl:      16px;
 
   /* Shadow */
   --sh-sm: 0 1px 4px rgba(10,15,30,.08);
@@ -58,7 +58,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-h1, h2, h3 { font-family: var(--font-heading); }
+h1, h2, h3 { font-family: var(--font-heading); font-weight: 700; }
 img, svg { max-width: 100%; display: block; }
 a { color: inherit; text-decoration: none; }
 button { font-family: inherit; }
@@ -76,28 +76,24 @@ button { font-family: inherit; }
 /* ---- Navigation ---- */
 .nav {
   position: sticky; top: 0; z-index: 200;
-  background: rgba(255,255,255,.97);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border-bottom: 2px solid var(--gold);
-  box-shadow: 0 1px 8px rgba(10,15,30,.07);
+  background: rgba(255,255,255,.98);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--border);
+  box-shadow: 0 1px 6px rgba(10,15,30,.05);
 }
 .nav__inner {
   display: flex; align-items: center;
   justify-content: space-between;
-  height: 60px; gap: 8px;
+  height: 64px; gap: 8px;
 }
 .nav__logo {
   display: flex; align-items: center; gap: 10px;
   font-family: var(--font-heading); font-weight: 700; font-size: 17px; color: var(--ink);
-  letter-spacing: .1px; flex-shrink: 0;
+  letter-spacing: -.2px; flex-shrink: 0;
 }
-.nav__logo-mark {
-  width: 30px; height: 30px;
-  background: var(--accent); border-radius: var(--r);
-  display: flex; align-items: center; justify-content: center;
-  font-size: 12px; font-weight: 800; color: #fff; letter-spacing: -.5px;
-  border: 1.5px solid var(--gold);
+.nav__logo-img {
+  width: 32px; height: 32px;
 }
 .nav__links { display: flex; align-items: center; gap: 2px; }
 .nav__link {
@@ -124,13 +120,14 @@ button { font-family: inherit; }
 .hero {
   padding: 100px 0 80px;
   border-bottom: 1px solid var(--border);
+  background: linear-gradient(180deg, var(--surface-2) 0%, var(--surface) 100%);
 }
 .hero__label {
   display: inline-flex; align-items: center; gap: 6px;
-  font-size: 11px; font-weight: 700; letter-spacing: 1px;
+  font-size: 11px; font-weight: 700; letter-spacing: 1.2px;
   text-transform: uppercase; color: var(--accent);
-  padding: 5px 14px; border: 1px solid var(--gold);
-  background: var(--gold-light);
+  padding: 6px 16px; border: 1px solid var(--accent);
+  background: rgba(15,43,91,.06);
   border-radius: 100px; margin-bottom: 28px;
 }
 .hero__title {
@@ -242,9 +239,9 @@ button { font-family: inherit; }
 /* ---- Page header (interior) ---- */
 .page-header {
   padding: 72px 0 60px;
-  background: var(--surface-2);
-  border-bottom: 2px solid var(--surface-3);
-  border-top: 3px solid var(--gold);
+  background: linear-gradient(180deg, var(--surface-2) 0%, var(--surface) 100%);
+  border-bottom: 1px solid var(--border);
+  border-top: 3px solid var(--accent);
 }
 .page-header h1 {
   font-family: var(--font-heading);
@@ -564,7 +561,7 @@ pre code { background: none; padding: 0; color: inherit; font-size: inherit; }
 
 /* ---- CTA block ---- */
 .cta-block {
-  background: var(--ink); border-radius: var(--r-xl);
+  background: var(--accent); border-radius: var(--r-xl);
   padding: 72px 48px; text-align: center; color: #fff;
 }
 .cta-block h2 { font-family: var(--font-heading); font-size: clamp(24px, 3vw, 38px); font-weight: 700; letter-spacing: -.3px; margin-bottom: 14px; }
