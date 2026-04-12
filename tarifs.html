@@ -4,23 +4,21 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Tarifs — Info-Score</title>
-  <meta name="description" content="Tarifs Info-Score : API publique à 0,50€/évaluation, certification premium, offre Pro pour universités et médias.">
+  <meta name="description" content="Tarifs Info-Score : Découverte à 1 €/certif, Certification Premium 5–10 €, Offre Pro sur devis. Association à but non lucratif.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
+  <!-- ── NAV ── -->
   <nav class="nav">
     <div class="container">
       <div class="nav__inner">
         <a href="index.html" class="nav__logo">
           <div class="nav__logo-mark">IS</div>
-          <div>
-            <span class="nav__logo-text">Info-Score</span>
-            <span class="nav__logo-sub">Certification informationnelle</span>
-          </div>
+          Info-Score
         </a>
         <div class="nav__links" id="navLinks">
           <a href="index.html" class="nav__link">Accueil</a>
@@ -30,45 +28,39 @@
           <a href="tarifs.html" class="nav__cta">Tarifs</a>
         </div>
         <button class="nav__toggle" onclick="document.getElementById('navLinks').classList.toggle('open')" aria-label="Menu">
-          <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M3 12h18M3 6h18M3 18h18"/></svg>
+          <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path d="M3 12h18M3 6h18M3 18h18"/>
+          </svg>
         </button>
       </div>
     </div>
   </nav>
 
-  <!-- PAGE HERO -->
-  <div style="background: linear-gradient(135deg, var(--navy-dark), var(--navy)); padding: 56px 0 48px; color:white;">
+  <!-- ── PAGE HEADER ── -->
+  <div class="page-header">
     <div class="container" style="text-align:center;">
-      <div class="section-tag" style="color:var(--gold-light);display:inline-block;">Tarification transparente</div>
-      <h1 style="font-size:clamp(28px,4vw,44px);font-weight:800;letter-spacing:-1px;margin:12px 0 16px;line-height:1.2;">
-        Un prix juste pour chaque usage
-      </h1>
-      <p style="font-size:17px;color:rgba(255,255,255,.75);max-width:560px;margin:0 auto;line-height:1.65;">
-        Association à but non lucratif — nos tarifs couvrent les coûts d'infrastructure
-        et financent l'amélioration du référentiel. Aucun abonnement forcé.
-      </p>
+      <div class="section-label" style="display:inline-block;">Tarification transparente</div>
+      <h1>Un prix juste pour chaque usage</h1>
+      <p style="margin:0 auto;">Association à but non lucratif — nos tarifs couvrent les coûts d'infrastructure et financent l'amélioration du référentiel. Aucun abonnement forcé.</p>
     </div>
   </div>
 
-  <!-- PRICING GRID -->
+  <!-- ── PRICING CARDS ── -->
   <section class="section">
     <div class="container">
-      <div class="pricing-grid">
+      <div class="pricing-grid" data-animate>
 
-        <!-- API Publique -->
-        <div class="pricing-card">
-          <div class="pricing-name">API Publique</div>
-          <div class="pricing-price">0,50 € <span>/ évaluation</span></div>
-          <div style="font-size:13px;color:var(--gray-400);margin-bottom:4px;">+ 0,50 € / certificat (optionnel)</div>
-          <div class="pricing-desc">
-            Idéal pour les développeurs, chercheurs et particuliers qui souhaitent
-            intégrer Info-Score dans leurs outils ou évaluer des contenus ponctuellement.
-          </div>
+        <!-- Découverte -->
+        <div class="pricing-card" id="decouverte">
+          <div class="pricing-tier">Découverte</div>
+          <div class="pricing-price">1 € <span>/ évaluation</span></div>
+          <div class="pricing-note">+ 0,50 € / certificat signé (optionnel)</div>
+          <p class="pricing-desc">Idéal pour les développeurs, chercheurs et particuliers qui souhaitent évaluer des contenus ponctuellement ou intégrer Info-Score dans leurs outils.</p>
           <ul class="pricing-features">
-            <li>Score sur 12 critères RUB</li>
+            <li>Score sur les 12 critères RUB</li>
             <li>Justification textuelle par critère</li>
             <li>Réponse JSON structurée</li>
-            <li>Certificat JSON signé (en option)</li>
+            <li>Certificat JSON signé (en option, +0,50 €)</li>
             <li>Accès à l'historique des évaluations</li>
             <li>Documentation API complète</li>
             <li>Facturation à l'usage, sans minimum</li>
@@ -76,74 +68,118 @@
           <a href="api.html" class="pricing-btn pricing-btn--outline">Documentation API</a>
         </div>
 
-        <!-- Certification Premium -->
-        <div class="pricing-card pricing-card--featured">
-          <div class="pricing-badge">Le plus populaire</div>
-          <div class="pricing-name">Certification Premium</div>
+        <!-- Premium -->
+        <div class="pricing-card pricing-card--featured" id="premium">
+          <div class="pricing-tier" style="color:var(--accent);font-weight:700;">Premium — Le plus demandé</div>
           <div class="pricing-price">5 – 10 € <span>/ contenu</span></div>
-          <div style="font-size:13px;color:var(--gray-400);margin-bottom:4px;">Selon longueur et complexité</div>
-          <div class="pricing-desc">
-            Pour les auteurs, éditeurs et médias qui souhaitent afficher un badge
-            de certification officiel et obtenir un rapport détaillé et signé.
-          </div>
+          <div class="pricing-note">Selon longueur et complexité du contenu</div>
+          <p class="pricing-desc">Pour les auteurs, éditeurs et médias qui souhaitent afficher un badge de certification officiel et obtenir un rapport détaillé signé numériquement.</p>
           <ul class="pricing-features">
-            <li>Tout ce de l'API Publique inclus</li>
+            <li>Tout l'offre Découverte incluse</li>
             <li>Rapport PDF détaillé critère par critère</li>
-            <li>Badge SVG intégrable (HTML/Markdown)</li>
+            <li>Badge SVG intégrable (HTML / Markdown)</li>
             <li>Certificat PDF avec signature numérique</li>
             <li>Revue humaine sur les critères sensibles</li>
             <li>Validité 12 mois (réévaluation annuelle)</li>
             <li>Mention dans le registre public Info-Score</li>
           </ul>
-          <a href="mailto:contact@info-score.org?subject=Certification Premium" class="pricing-btn pricing-btn--navy">Demander une certification</a>
+          <a href="mailto:contact@info-score.org?subject=Certification Premium" class="pricing-btn pricing-btn--accent">Demander une certification</a>
         </div>
 
         <!-- Pro -->
-        <div class="pricing-card">
-          <div class="pricing-name">Offre Pro</div>
-          <div class="pricing-price" style="font-size:28px;">Sur devis</div>
-          <div style="font-size:13px;color:var(--gray-400);margin-bottom:4px;">Volume &amp; intégrations personnalisées</div>
-          <div class="pricing-desc">
-            Pour les universités, médias, plateformes éditoriales et organisations
-            qui ont besoin d'évaluations en volume ou d'une intégration sur mesure.
-          </div>
+        <div class="pricing-card" id="pro">
+          <div class="pricing-tier">Pro — Organismes &amp; Médias</div>
+          <div class="pricing-price" style="font-size:32px;">500 – 2 000 €</div>
+          <div class="pricing-note">Par mois · Volume &amp; intégrations personnalisées</div>
+          <p class="pricing-desc">Pour les universités, médias, plateformes éditoriales et organisations qui ont besoin d'évaluations en volume ou d'une intégration sur mesure.</p>
           <ul class="pricing-features">
-            <li>Tout ce de la Certification Premium inclus</li>
-            <li>Tarif dégressif dès 100 évaluations/mois</li>
-            <li>API dédiée avec SLA garanti (99,9%)</li>
+            <li>Tout l'offre Premium incluse</li>
+            <li>Tarif dégressif à partir de 100 éval./mois</li>
+            <li>API dédiée avec SLA garanti (99,9 %)</li>
             <li>Webhooks et intégration CMS</li>
             <li>Tableau de bord analytique personnalisé</li>
-            <li>Accès au modèle d'évaluation en white-label</li>
+            <li>Accès au modèle en white-label</li>
             <li>Support prioritaire + contact dédié</li>
           </ul>
-          <a href="mailto:contact@info-score.org?subject=Offre Pro — Devis" class="pricing-btn pricing-btn--outline" id="pro">Demander un devis</a>
+          <a href="mailto:contact@info-score.org?subject=Offre Pro — Devis" class="pricing-btn pricing-btn--dark">Demander un devis</a>
         </div>
 
       </div>
 
-      <!-- Comparaison rapide -->
-      <div style="margin-top:56px;">
-        <h2 style="font-size:22px;font-weight:700;margin-bottom:24px;text-align:center;">Tableau comparatif</h2>
+      <!-- Comparison table -->
+      <div class="mt-48" data-animate>
+        <h2 style="font-size:20px;font-weight:700;margin-bottom:24px;text-align:center;letter-spacing:-.4px;">Tableau comparatif</h2>
         <div class="table-wrap">
-          <table>
+          <table class="compare-table">
             <thead>
               <tr>
                 <th>Fonctionnalité</th>
-                <th style="text-align:center;">API Publique</th>
+                <th style="text-align:center;">Découverte</th>
                 <th style="text-align:center;">Premium</th>
                 <th style="text-align:center;">Pro</th>
               </tr>
             </thead>
             <tbody>
-              <tr><td>Score RUB + justifications</td><td style="text-align:center;">✓</td><td style="text-align:center;">✓</td><td style="text-align:center;">✓</td></tr>
-              <tr><td>Certificat JSON signé</td><td style="text-align:center;">+0,50 €</td><td style="text-align:center;">✓</td><td style="text-align:center;">✓</td></tr>
-              <tr><td>Rapport PDF détaillé</td><td style="text-align:center;">—</td><td style="text-align:center;">✓</td><td style="text-align:center;">✓</td></tr>
-              <tr><td>Badge intégrable</td><td style="text-align:center;">—</td><td style="text-align:center;">✓</td><td style="text-align:center;">✓</td></tr>
-              <tr><td>Revue humaine</td><td style="text-align:center;">—</td><td style="text-align:center;">✓</td><td style="text-align:center;">✓</td></tr>
-              <tr><td>Registre public</td><td style="text-align:center;">—</td><td style="text-align:center;">✓</td><td style="text-align:center;">✓</td></tr>
-              <tr><td>Volume dégressif</td><td style="text-align:center;">—</td><td style="text-align:center;">—</td><td style="text-align:center;">✓</td></tr>
-              <tr><td>SLA garanti</td><td style="text-align:center;">—</td><td style="text-align:center;">—</td><td style="text-align:center;">✓</td></tr>
-              <tr><td>Webhooks / CMS</td><td style="text-align:center;">—</td><td style="text-align:center;">—</td><td style="text-align:center;">✓</td></tr>
+              <tr>
+                <td>Score RUB + justifications</td>
+                <td><span class="check">✓</span></td>
+                <td><span class="check">✓</span></td>
+                <td><span class="check">✓</span></td>
+              </tr>
+              <tr>
+                <td>Certificat JSON signé</td>
+                <td style="text-align:center;font-size:13px;color:var(--ink-3);">+0,50 €</td>
+                <td><span class="check">✓</span></td>
+                <td><span class="check">✓</span></td>
+              </tr>
+              <tr>
+                <td>Rapport PDF détaillé</td>
+                <td><span class="cross">—</span></td>
+                <td><span class="check">✓</span></td>
+                <td><span class="check">✓</span></td>
+              </tr>
+              <tr>
+                <td>Badge intégrable</td>
+                <td><span class="cross">—</span></td>
+                <td><span class="check">✓</span></td>
+                <td><span class="check">✓</span></td>
+              </tr>
+              <tr>
+                <td>Revue humaine</td>
+                <td><span class="cross">—</span></td>
+                <td><span class="check">✓</span></td>
+                <td><span class="check">✓</span></td>
+              </tr>
+              <tr>
+                <td>Registre public</td>
+                <td><span class="cross">—</span></td>
+                <td><span class="check">✓</span></td>
+                <td><span class="check">✓</span></td>
+              </tr>
+              <tr>
+                <td>Volume dégressif</td>
+                <td><span class="cross">—</span></td>
+                <td><span class="cross">—</span></td>
+                <td><span class="check">✓</span></td>
+              </tr>
+              <tr>
+                <td>SLA garanti (99,9 %)</td>
+                <td><span class="cross">—</span></td>
+                <td><span class="cross">—</span></td>
+                <td><span class="check">✓</span></td>
+              </tr>
+              <tr>
+                <td>Webhooks / intégration CMS</td>
+                <td><span class="cross">—</span></td>
+                <td><span class="cross">—</span></td>
+                <td><span class="check">✓</span></td>
+              </tr>
+              <tr>
+                <td>Tableau de bord analytique</td>
+                <td><span class="cross">—</span></td>
+                <td><span class="cross">—</span></td>
+                <td><span class="check">✓</span></td>
+              </tr>
             </tbody>
           </table>
         </div>
@@ -151,38 +187,29 @@
     </div>
   </section>
 
-  <!-- FAQ -->
-  <section class="section section--gray">
+  <!-- ── FAQ ── -->
+  <section class="section section--alt" id="faq">
     <div class="container">
-      <div class="section-header section-header--center">
-        <div class="section-tag">Questions fréquentes</div>
+      <div class="section-header section-header--center" data-animate>
+        <div class="section-label">Questions fréquentes</div>
         <h2 class="section-title">Tout ce que vous devez savoir</h2>
       </div>
-      <div class="faq">
+      <div class="faq" data-animate>
 
         <div class="faq-item open">
           <button class="faq-q" onclick="toggleFaq(this)">
             Comment fonctionne la facturation à l'usage ?
             <svg class="chevron" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg>
           </button>
-          <div class="faq-a">
-            Vous créditez votre compte Info-Score (minimum 5 €) et chaque évaluation débite 0,50 €.
-            L'ajout d'un certificat signé coûte 0,50 € supplémentaire. Pas d'abonnement, pas de frais cachés.
-            Un email est envoyé quand votre solde passe sous 2 €.
-          </div>
+          <div class="faq-a">Vous créditez votre compte Info-Score (minimum 5 €) et chaque évaluation débite 1 €. L'ajout d'un certificat signé coûte 0,50 € supplémentaire. Pas d'abonnement, pas de frais cachés. Un email est envoyé quand votre solde passe sous 2 €.</div>
         </div>
 
         <div class="faq-item">
           <button class="faq-q" onclick="toggleFaq(this)">
-            Quelle est la différence entre le certificat JSON et le rapport PDF ?
+            Quelle différence entre le certificat JSON et le rapport PDF ?
             <svg class="chevron" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg>
           </button>
-          <div class="faq-a">
-            Le <strong>certificat JSON</strong> (0,50 €) est un document machine-readable signé cryptographiquement,
-            idéal pour l'intégration dans des systèmes automatisés, des API ou des bases de données.
-            Le <strong>rapport PDF</strong> (inclus dans Premium) est un document humain-readable avec
-            l'explication détaillée de chaque critère, la justification du grade et le badge visuel.
-          </div>
+          <div class="faq-a">Le <strong>certificat JSON</strong> (+0,50 €) est un document machine-readable signé cryptographiquement, idéal pour l'intégration dans des systèmes automatisés. Le <strong>rapport PDF</strong> (inclus dans Premium) est un document humain-readable avec l'explication détaillée de chaque critère, la justification du grade et le badge visuel.</div>
         </div>
 
         <div class="faq-item">
@@ -190,24 +217,15 @@
             Un contenu peut-il être réévalué si le score semble incorrect ?
             <svg class="chevron" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg>
           </button>
-          <div class="faq-a">
-            Oui. Vous pouvez soumettre une demande de réévaluation depuis votre espace client,
-            en joignant une réponse factuelle aux critères contestés. La réévaluation est gratuite
-            si l'évaluation initiale s'avère erronée ; elle coûte 1 € si le score est confirmé.
-            Toutes les évaluations (initiale et réévaluation) sont conservées dans l'historique public.
-          </div>
+          <div class="faq-a">Oui. Vous pouvez soumettre une demande de réévaluation en joignant une réponse factuelle aux critères contestés. La réévaluation est gratuite si l'évaluation initiale s'avère erronée ; elle coûte 1 € si le score est confirmé. Toutes les évaluations sont conservées dans l'historique public.</div>
         </div>
 
         <div class="faq-item">
           <button class="faq-q" onclick="toggleFaq(this)">
             L'offre Pro est-elle accessible aux associations ou organismes publics ?
-            <svg class="chevron" width="18" height="18" fill="never" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg>
+            <svg class="chevron" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg>
           </button>
-          <div class="faq-a">
-            Oui, et des tarifs spéciaux sont disponibles pour les associations à but non lucratif,
-            les établissements d'enseignement public et les organismes de recherche.
-            Contactez-nous avec votre numéro SIREN et une description de l'usage envisagé.
-          </div>
+          <div class="faq-a">Oui. Des tarifs spéciaux sont disponibles pour les associations à but non lucratif, les établissements d'enseignement public et les organismes de recherche. Contactez-nous avec votre numéro SIREN et une description de l'usage envisagé.</div>
         </div>
 
         <div class="faq-item">
@@ -215,11 +233,7 @@
             Combien de temps prend une évaluation ?
             <svg class="chevron" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg>
           </button>
-          <div class="faq-a">
-            L'évaluation automatisée retourne un résultat en <strong>10 à 30 secondes</strong> selon
-            la longueur du contenu. La certification Premium avec revue humaine est livrée
-            sous <strong>48 heures ouvrées</strong>. L'offre Pro peut bénéficier d'un SLA personnalisé.
-          </div>
+          <div class="faq-a">L'évaluation automatisée retourne un résultat en <strong>10 à 30 secondes</strong> selon la longueur du contenu. La certification Premium avec revue humaine est livrée sous <strong>48 heures ouvrées</strong>. L'offre Pro peut bénéficier d'un SLA personnalisé.</div>
         </div>
 
         <div class="faq-item">
@@ -227,12 +241,7 @@
             Les contenus soumis sont-ils conservés ou partagés ?
             <svg class="chevron" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg>
           </button>
-          <div class="faq-a">
-            Le contenu soumis est utilisé uniquement pour l'évaluation. Seul le résultat de l'évaluation
-            (score, grade, justifications) est conservé dans notre base publique — pas le texte source.
-            Si vous soumettez une URL publique, un hash du contenu est archivé pour permettre la vérification.
-            Conformément au RGPD, aucune donnée personnelle n'est collectée sans consentement explicite.
-          </div>
+          <div class="faq-a">Le contenu soumis est utilisé uniquement pour l'évaluation. Seul le résultat (score, grade, justifications) est conservé dans notre base publique — pas le texte source. Si vous soumettez une URL publique, un hash du contenu est archivé pour permettre la vérification. Conforme RGPD.</div>
         </div>
 
         <div class="faq-item">
@@ -240,41 +249,38 @@
             Puis-je afficher le badge Info-Score sur mon site ?
             <svg class="chevron" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg>
           </button>
-          <div class="faq-a">
-            Oui, avec la Certification Premium vous recevez un badge SVG dynamique qui affiche le grade
-            en temps réel et est lié au certificat public. L'utilisation du badge sans certification préalable
-            est interdite par nos conditions d'utilisation.
-          </div>
+          <div class="faq-a">Oui, avec la Certification Premium vous recevez un badge SVG dynamique qui affiche le grade en temps réel, lié au certificat public. L'utilisation du badge sans certification préalable est interdite par nos conditions d'utilisation.</div>
         </div>
 
       </div>
     </div>
   </section>
 
-  <!-- CTA -->
+  <!-- ── CTA ── -->
   <section class="section">
-    <div class="container">
-      <div class="cta-banner">
+    <div class="container" data-animate>
+      <div class="cta-block">
         <h2>Prêt à commencer ?</h2>
-        <p>Créez votre compte, obtenez votre clé API, et votre première évaluation est offerte.</p>
-        <div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap;">
-          <a href="mailto:contact@info-score.org?subject=Création de compte API" class="btn btn--gold">Créer un compte</a>
-          <a href="api.html" class="btn btn--outline">Voir la doc API</a>
+        <p>Créez votre compte, obtenez votre clé API. Première évaluation offerte.</p>
+        <div class="flex flex-wrap justify-center gap-12">
+          <a href="mailto:contact@info-score.org?subject=Création de compte API" class="btn btn--light">Créer un compte</a>
+          <a href="api.html" class="btn btn--ghost-white">Voir la doc API →</a>
         </div>
       </div>
     </div>
   </section>
 
+  <!-- ── FOOTER ── -->
   <footer class="footer">
     <div class="container">
       <div class="footer__grid">
         <div>
-          <div style="display:flex;align-items:center;gap:10px;margin-bottom:12px;">
-            <div style="background:var(--gold);width:36px;height:36px;border-radius:6px;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:16px;color:var(--navy-dark);">IS</div>
+          <div class="footer__brand">
+            <div class="nav__logo-mark">IS</div>
             <div class="footer__brand-name">Info-Score</div>
           </div>
           <p class="footer__brand-desc">Organisme de certification indépendant de la qualité informationnelle. Association loi 1901.</p>
-          <a href="mailto:contact@info-score.org" style="font-size:14px;color:rgba(255,255,255,.6);">contact@info-score.org</a>
+          <a href="mailto:contact@info-score.org" class="footer__mail">contact@info-score.org</a>
         </div>
         <div>
           <div class="footer__col-title">Navigation</div>
@@ -287,11 +293,11 @@
           </ul>
         </div>
         <div>
-          <div class="footer__col-title">Tarifs</div>
+          <div class="footer__col-title">Offres</div>
           <ul class="footer__links">
-            <li><a href="#api">API Publique</a></li>
-            <li><a href="#premium">Certification Premium</a></li>
-            <li><a href="#pro">Offre Pro</a></li>
+            <li><a href="#decouverte">Découverte</a></li>
+            <li><a href="#premium">Premium</a></li>
+            <li><a href="#pro">Pro (devis)</a></li>
             <li><a href="#faq">FAQ</a></li>
           </ul>
         </div>
@@ -310,9 +316,12 @@
   </footer>
 
   <script>
-    function toggleFaq(btn) {
-      btn.parentElement.classList.toggle('open');
-    }
+    function toggleFaq(btn) { btn.parentElement.classList.toggle('open'); }
+
+    const obs = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('is-visible'); });
+    }, { threshold: 0.07, rootMargin: '0px 0px -40px 0px' });
+    document.querySelectorAll('[data-animate]').forEach(el => obs.observe(el));
   </script>
 </body>
 </html>

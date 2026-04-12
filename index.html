@@ -4,24 +4,21 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Info-Score — Certifier la qualité de l'information</title>
-  <meta name="description" content="Info-Score est un organisme de certification indépendant de la qualité informationnelle. Cadre RUB, 12 critères, 6 grades. Évaluation rigoureuse et transparente.">
+  <meta name="description" content="Info-Score est un organisme de certification indépendant de la qualité informationnelle. Cadre RUB, 12 critères, 6 grades. Association loi 1901.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-  <!-- NAV -->
+  <!-- ── NAV ── -->
   <nav class="nav">
     <div class="container">
       <div class="nav__inner">
         <a href="index.html" class="nav__logo">
           <div class="nav__logo-mark">IS</div>
-          <div>
-            <span class="nav__logo-text">Info-Score</span>
-            <span class="nav__logo-sub">Certification informationnelle</span>
-          </div>
+          Info-Score
         </a>
         <div class="nav__links" id="navLinks">
           <a href="index.html" class="nav__link nav__link--active">Accueil</a>
@@ -31,7 +28,7 @@
           <a href="tarifs.html" class="nav__cta">Tarifs</a>
         </div>
         <button class="nav__toggle" onclick="document.getElementById('navLinks').classList.toggle('open')" aria-label="Menu">
-          <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
             <path d="M3 12h18M3 6h18M3 18h18"/>
           </svg>
         </button>
@@ -39,166 +36,142 @@
     </div>
   </nav>
 
-  <!-- HERO -->
+  <!-- ── HERO ── -->
   <section class="hero">
     <div class="container">
-      <div class="hero__inner">
-        <div class="hero__tag">
-          <svg width="14" height="14" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
-          Association loi 1901 — Organisme indépendant
+      <div>
+        <div class="hero__label">
+          <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg>
+          Association loi 1901 · Organisme indépendant
         </div>
-        <h1 class="hero__title">
-          Certifier la qualité<br>de <span>l'information</span>
-        </h1>
-        <p class="hero__subtitle">
-          Info-Score évalue rigoureusement chaque contenu selon le cadre RUB — Réalité, Utilité, Bonté —
-          et lui attribue un grade de A à E. Une certification transparente, auditée, reproductible.
+        <h1 class="hero__title">Certifier la qualité<br>de l'information.</h1>
+        <p class="hero__sub">
+          Info-Score évalue chaque contenu selon le cadre RUB — 12 critères pondérés,
+          6 grades de certification. Transparent, auditable, reproductible.
         </p>
         <div class="hero__actions">
-          <a href="referentiel.html" class="btn btn--gold">Découvrir le référentiel</a>
-          <a href="api.html" class="btn btn--outline">Accéder à l'API</a>
+          <a href="referentiel.html" class="btn btn--dark">Découvrir le référentiel</a>
+          <a href="api.html" class="btn btn--ghost">
+            Documentation API
+            <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
         </div>
         <div class="hero__stats">
-          <div>
-            <div class="hero__stat-value">12 470</div>
-            <div class="hero__stat-label">Évaluations réalisées</div>
+          <div class="hero__stat">
+            <div class="hero__stat-n">12 470</div>
+            <div class="hero__stat-l">Évaluations réalisées</div>
           </div>
-          <div>
-            <div class="hero__stat-value">62,4</div>
-            <div class="hero__stat-label">Score moyen /100</div>
+          <div class="hero__stat">
+            <div class="hero__stat-n">62,4</div>
+            <div class="hero__stat-l">Score moyen / 100</div>
           </div>
-          <div>
-            <div class="hero__stat-value">12</div>
-            <div class="hero__stat-label">Critères pondérés</div>
+          <div class="hero__stat">
+            <div class="hero__stat-n">1 847</div>
+            <div class="hero__stat-l">Sources évaluées</div>
           </div>
-          <div>
-            <div class="hero__stat-value">6</div>
-            <div class="hero__stat-label">Grades de certification</div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- RUB SECTION -->
-  <section class="section section--gray">
-    <div class="container">
-      <div class="section-header section-header--center">
-        <div class="section-tag">Le cadre RUB</div>
-        <h2 class="section-title">Trois dimensions pour une information de qualité</h2>
-        <p class="section-desc">
-          Chaque contenu est évalué selon trois axes complémentaires,
-          reflétant les dimensions scientifique, technique et humaine de l'information.
-        </p>
-      </div>
-      <div class="rub-grid">
-        <div class="rub-card rub-card--r">
-          <div class="rub-icon rub-icon--r">🔬</div>
-          <div class="rub-pct rub-pct--r">45%</div>
-          <div class="rub-title">Réalité</div>
-          <div class="rub-sub">Dimension Scientifique</div>
-          <p class="rub-desc">
-            L'information est-elle réelle, vérifiable, mesurable ? Observer les faits,
-            citer les sources primaires, documenter les preuves, distinguer le certain de l'hypothétique.
-          </p>
-          <div style="margin-top: 16px; font-size: 13px; color: #4a5568;">
-            <strong>Critères :</strong> R1 Exactitude factuelle · R2 Sources primaires ·
-            R3 Incertitude · R4 Contextualisation · R5 Vérifiabilité
-          </div>
-        </div>
-        <div class="rub-card rub-card--u">
-          <div class="rub-icon rub-icon--u">⚙️</div>
-          <div class="rub-pct rub-pct--u">25%</div>
-          <div class="rub-title">Utilité</div>
-          <div class="rub-sub">Dimension Ingénieur</div>
-          <p class="rub-desc">
-            L'information est-elle utile, actionnable, bien conçue ? Concevoir pour servir,
-            simplifier sans trahir, optimiser la transmission du savoir et l'applicabilité pratique.
-          </p>
-          <div style="margin-top: 16px; font-size: 13px; color: #4a5568;">
-            <strong>Critères :</strong> U1 Clarté et lisibilité · U2 Applicabilité ·
-            U3 Complétude
-          </div>
-        </div>
-        <div class="rub-card rub-card--b">
-          <div class="rub-icon rub-icon--b">🤝</div>
-          <div class="rub-pct rub-pct--b">30%</div>
-          <div class="rub-title">Bonté</div>
-          <div class="rub-sub">Dimension Humaniste</div>
-          <p class="rub-desc">
-            L'information est-elle bonne pour la société ? Servir l'humain, respecter
-            l'autonomie du lecteur, éviter la manipulation, contribuer au bien commun.
-          </p>
-          <div style="margin-top: 16px; font-size: 13px; color: #4a5568;">
-            <strong>Critères :</strong> B1 Équilibre · B2 Transparence · B3 Respect ·
-            B4 Impact social
+          <div class="hero__stat">
+            <div class="hero__stat-n">6</div>
+            <div class="hero__stat-l">Grades de certification</div>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- HOW IT WORKS -->
+  <!-- ── RUB ── -->
   <section class="section">
     <div class="container">
-      <div class="section-header section-header--center">
-        <div class="section-tag">Processus</div>
-        <h2 class="section-title">Comment fonctionne la certification ?</h2>
-        <p class="section-desc">Trois étapes simples pour obtenir un grade Info-Score certifié.</p>
+      <div class="section-header" data-animate>
+        <div class="section-label">Le cadre RUB</div>
+        <h2 class="section-title">Trois dimensions pour une information de qualité</h2>
+        <p class="section-sub">Réalité, Utilité, Bonté — trois axes complémentaires qui couvrent les dimensions scientifique, technique et humaine de l'information.</p>
       </div>
-      <div class="steps">
-        <div class="step">
-          <div class="step__num">1</div>
-          <h3 class="step__title">Soumettre</h3>
-          <p class="step__desc">
-            Envoyez l'URL ou le texte de l'article via l'API REST ou le formulaire en ligne.
-            Tout type de contenu est accepté : article de presse, étude, billet de blog, rapport.
-          </p>
+      <div class="rub-grid">
+        <div class="rub-card rub-card--R" data-animate data-delay="1">
+          <div class="rub-letter rub-letter--R">R</div>
+          <div class="rub-pct rub-pct--R">45%</div>
+          <div class="rub-name">Réalité</div>
+          <div class="rub-dim">Dimension Scientifique</div>
+          <p class="rub-desc">L'information est-elle réelle, vérifiable, mesurable ? Observer les faits, citer les sources primaires, distinguer le certain de l'hypothétique.</p>
+          <div class="rub-crit">R1 Exactitude factuelle · R2 Traçabilité des sources · R3 Gestion de l'incertitude · R4 Contextualisation · R5 Vérifiabilité</div>
         </div>
-        <div class="step">
-          <div class="step__num">2</div>
-          <h3 class="step__title">Évaluer</h3>
-          <p class="step__desc">
-            Notre moteur d'évaluation note le contenu sur les 12 critères RUB
-            (coefficients ×1 à ×3), calcule le score pondéré sur 87 points et le convertit en pourcentage.
-          </p>
+        <div class="rub-card rub-card--U" data-animate data-delay="2">
+          <div class="rub-letter rub-letter--U">U</div>
+          <div class="rub-pct rub-pct--U">25%</div>
+          <div class="rub-name">Utilité</div>
+          <div class="rub-dim">Dimension Ingénieur</div>
+          <p class="rub-desc">L'information est-elle utile, actionnable, bien conçue ? Concevoir pour servir, simplifier sans trahir, optimiser la transmission du savoir.</p>
+          <div class="rub-crit">U1 Clarté et lisibilité · U2 Applicabilité pratique · U3 Complétude</div>
         </div>
-        <div class="step">
-          <div class="step__num">3</div>
-          <h3 class="step__title">Certifier</h3>
-          <p class="step__desc">
-            Un grade de A (≥86%) à E (&lt;30%) est attribué. Le certificat JSON signé et le rapport
-            détaillé sont disponibles immédiatement via l'API ou en PDF téléchargeable.
-          </p>
+        <div class="rub-card rub-card--B" data-animate data-delay="3">
+          <div class="rub-letter rub-letter--B">B</div>
+          <div class="rub-pct rub-pct--B">30%</div>
+          <div class="rub-name">Bonté</div>
+          <div class="rub-dim">Dimension Humaniste</div>
+          <p class="rub-desc">L'information est-elle bonne pour la société ? Respecter l'autonomie du lecteur, éviter la manipulation, contribuer au bien commun.</p>
+          <div class="rub-crit">B1 Équilibre et pluralisme · B2 Transparence des intentions · B3 Respect de l'autonomie · B4 Impact social</div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- SHOWCASE -->
-  <section class="section section--gray">
+  <!-- ── HOW IT WORKS ── -->
+  <section class="section section--alt">
     <div class="container">
-      <div class="section-header">
-        <div class="section-tag">Exemples d'évaluations</div>
-        <h2 class="section-title">Des certifications concrètes</h2>
-        <p class="section-desc">
-          Voici un aperçu des dernières évaluations réalisées par Info-Score sur des contenus variés.
-        </p>
+      <div class="section-header section-header--center" data-animate>
+        <div class="section-label">Processus</div>
+        <h2 class="section-title">Comment fonctionne la certification ?</h2>
+        <p class="section-sub">Trois étapes pour obtenir un grade Info-Score certifié et auditable.</p>
       </div>
-      <div class="showcase-grid">
+      <div class="steps" data-animate>
+        <div class="step">
+          <div class="step__num">01</div>
+          <h3 class="step__title">Soumettre</h3>
+          <p class="step__desc">Envoyez l'URL ou le texte du contenu via l'API REST ou le formulaire en ligne. Articles de presse, études, billets de blog — tout type de contenu est accepté.</p>
+        </div>
+        <div class="step">
+          <div class="step__num">02</div>
+          <h3 class="step__title">Évaluer</h3>
+          <p class="step__desc">Notre moteur note le contenu sur les 12 critères RUB (coefficients ×1 à ×3), calcule le score pondéré sur 87 points et le convertit en pourcentage.</p>
+        </div>
+        <div class="step">
+          <div class="step__num">03</div>
+          <h3 class="step__title">Certifier</h3>
+          <p class="step__desc">Un grade de A (≥ 86 %) à E (&lt; 30 %) est attribué. Le certificat JSON signé et le rapport détaillé sont disponibles immédiatement via l'API.</p>
+        </div>
+      </div>
+    </div>
+  </section>
 
+  <!-- ── SHOWCASE ── -->
+  <section class="section">
+    <div class="container">
+      <div class="section-header" data-animate>
+        <div class="section-label">Exemples d'évaluations</div>
+        <h2 class="section-title">Des certifications concrètes</h2>
+        <p class="section-sub">Aperçu de certifications récentes sur des contenus variés — du rapport scientifique au billet complotiste.</p>
+      </div>
+      <div class="showcase-grid" data-animate>
         <div class="showcase-card">
-          <div class="badge badge--lg badge--A">A</div>
+          <span class="badge badge--lg badge--A">A</span>
           <div class="showcase-content">
             <div class="showcase-meta">Le Monde · Science &amp; Médecine · 08 avr. 2026</div>
             <div class="showcase-title">Réchauffement climatique : les données du GIEC 2025 confirment l'accélération des extrêmes</div>
             <div class="showcase-score">Score : <strong>89,1 / 100</strong> · Grade <strong>A — Exemplaire</strong></div>
-            <div class="showcase-excerpt">Sources primaires citées, incertitudes quantifiées, contexte historique solide. Présentation équilibrée des données GIEC sans alarmisme rhétorique.</div>
+            <div class="showcase-excerpt">Sources primaires citées, incertitudes quantifiées, contexte historique solide. Présentation équilibrée sans alarmisme rhétorique.</div>
           </div>
         </div>
-
         <div class="showcase-card">
-          <div class="badge badge--lg badge--B">B</div>
+          <span class="badge badge--lg badge--A">A</span>
+          <div class="showcase-content">
+            <div class="showcase-meta">Nature France · Médecine · 28 mars 2026</div>
+            <div class="showcase-title">Efficacité des ARNm contre les variants grippaux H3N2 : méta-analyse de 14 essais</div>
+            <div class="showcase-score">Score : <strong>92,4 / 100</strong> · Grade <strong>A — Exemplaire</strong></div>
+            <div class="showcase-excerpt">Méthodologie irréprochable, intervalles de confiance reportés, conflits d'intérêts déclarés. Référence de qualité.</div>
+          </div>
+        </div>
+        <div class="showcase-card">
+          <span class="badge badge--lg badge--B">B</span>
           <div class="showcase-content">
             <div class="showcase-meta">Santé Magazine · Nutrition · 02 avr. 2026</div>
             <div class="showcase-title">Alimentation ultra-transformée : ce que disent les études épidémiologiques récentes</div>
@@ -206,29 +179,8 @@
             <div class="showcase-excerpt">Bonne rigueur factuelle, sources pertinentes. Quelques raccourcis causaux non justifiés ; recommandations pratiques bien formulées.</div>
           </div>
         </div>
-
         <div class="showcase-card">
-          <div class="badge badge--lg badge--A">A</div>
-          <div class="showcase-content">
-            <div class="showcase-meta">Nature France · Médecine · 28 mars 2026</div>
-            <div class="showcase-title">Efficacité des nouveaux ARNm contre les variants grippal H3N2 : méta-analyse de 14 essais</div>
-            <div class="showcase-score">Score : <strong>92,4 / 100</strong> · Grade <strong>A — Exemplaire</strong></div>
-            <div class="showcase-excerpt">Méthodologie irréprochable, intervalles de confiance reportés, conflits d'intérêts déclarés. Référence de qualité informationnelle.</div>
-          </div>
-        </div>
-
-        <div class="showcase-card">
-          <div class="badge badge--lg badge--B">B</div>
-          <div class="showcase-content">
-            <div class="showcase-meta">Tech &amp; Société · IA · 05 avr. 2026</div>
-            <div class="showcase-title">Intelligence artificielle générative : menace réelle pour l'emploi ou opportunité de transformation ?</div>
-            <div class="showcase-score">Score : <strong>71,8 / 100</strong> · Grade <strong>B — Fiable</strong></div>
-            <div class="showcase-excerpt">Problématique bien posée, sources diversifiées. Titre légèrement accrocheur ; analyse des positions contradictoires globalement équitable.</div>
-          </div>
-        </div>
-
-        <div class="showcase-card">
-          <div class="badge badge--lg badge--C">C</div>
+          <span class="badge badge--lg badge--C">C</span>
           <div class="showcase-content">
             <div class="showcase-meta">Blog Économie · Finance · 10 mars 2026</div>
             <div class="showcase-title">Pourquoi l'inflation va repartir à la hausse selon 3 indicateurs clés</div>
@@ -236,147 +188,120 @@
             <div class="showcase-excerpt">Données chiffrées présentes mais sélectionnées favorablement. Prévisions présentées comme certitudes ; sources secondaires majoritaires.</div>
           </div>
         </div>
-
         <div class="showcase-card">
-          <div class="badge badge--lg badge--C">C</div>
-          <div class="showcase-content">
-            <div class="showcase-meta">Bien-être &amp; Santé · Médecine douce · 14 mars 2026</div>
-            <div class="showcase-title">Les bienfaits prouvés de la cohérence cardiaque sur le stress chronique</div>
-            <div class="showcase-score">Score : <strong>52,7 / 100</strong> · Grade <strong>C — Acceptable</strong></div>
-            <div class="showcase-excerpt">Études citées mais niveau de preuve non précisé. Formulations promotionnelles ; distinction études / témoignages insuffisante.</div>
-          </div>
-        </div>
-
-        <div class="showcase-card">
-          <div class="badge badge--lg badge--D">D</div>
+          <span class="badge badge--lg badge--D">D</span>
           <div class="showcase-content">
             <div class="showcase-meta">CryptoBuzz · Finance · 01 avr. 2026</div>
             <div class="showcase-title">Bitcoin à 200 000 $ d'ici fin 2026 : les 5 raisons qui ne trompent pas</div>
             <div class="showcase-score">Score : <strong>31,4 / 100</strong> · Grade <strong>D — Insuffisant</strong></div>
-            <div class="showcase-excerpt">Prédictions affirmatives sans base méthodologique. Sources circulaires, absence de scénarios alternatifs, ton promotionnel marqué.</div>
+            <div class="showcase-excerpt">Prédictions affirmatives sans base méthodologique. Sources circulaires, absence de scénarios alternatifs, ton promotionnel.</div>
           </div>
         </div>
-
         <div class="showcase-card">
-          <div class="badge badge--lg badge--E">E</div>
+          <span class="badge badge--lg badge--E">E</span>
           <div class="showcase-content">
-            <div class="showcase-meta">Vérité-Cachée.fr · Complotiville · 22 mars 2026</div>
+            <div class="showcase-meta">Vérité-Cachée.fr · Complotisme · 22 mars 2026</div>
             <div class="showcase-title">Le vrai bilan de l'OMS : comment les chiffres officiels sont falsifiés depuis 2019</div>
             <div class="showcase-score">Score : <strong>8,2 / 100</strong> · Grade <strong>E — Obscurant</strong></div>
-            <div class="showcase-excerpt">Aucune source primaire vérifiable. Affirmations sans preuves, raisonnement circulaire, manipulation émotionnelle intentionnelle. Contenu nuisible.</div>
+            <div class="showcase-excerpt">Aucune source primaire vérifiable. Affirmations sans preuves, raisonnement circulaire, manipulation émotionnelle intentionnelle.</div>
           </div>
         </div>
-
       </div>
-      <div class="text-center mt-48">
-        <a href="statistiques.html" class="btn btn--navy">Voir toutes les statistiques</a>
+      <div class="text-center mt-32" data-animate>
+        <a href="statistiques.html" class="btn btn--outline">Voir toutes les statistiques</a>
       </div>
     </div>
   </section>
 
-  <!-- GRADES OVERVIEW -->
-  <section class="section">
+  <!-- ── GRADES ── -->
+  <section class="section section--alt">
     <div class="container">
-      <div class="section-header section-header--center">
-        <div class="section-tag">Système de grades</div>
+      <div class="section-header section-header--center" data-animate>
+        <div class="section-label">Système de grades</div>
         <h2 class="section-title">Six niveaux de certification</h2>
-        <p class="section-desc">Du contenu exemplaire au contenu obscurant — chaque grade a une signification précise et opérationnelle.</p>
+        <p class="section-sub">Du contenu exemplaire au contenu obscurant — chaque grade a une signification précise et opérationnelle.</p>
       </div>
-      <div class="grades-grid">
+      <div class="grades-grid" data-animate>
         <div class="grade-card grade-card--A">
           <div class="grade-card__top">
-            <div class="badge badge--md badge--A">A</div>
-            <div>
-              <div class="grade-card__name">Exemplaire</div>
-              <div class="grade-card__threshold">≥ 86%</div>
-            </div>
+            <span class="badge badge--md badge--A">A</span>
+            <div class="grade-card__name">Exemplaire</div>
+            <div class="grade-card__threshold">≥ 86 %</div>
           </div>
-          <div class="grade-card__desc">Information de référence, rigoureuse, transparente et utile. Sources primaires, méthodes documentées, équilibre exemplaire.</div>
+          <p class="grade-card__desc">Information de référence, rigoureuse sur tous les axes. Sources primaires, méthode transparente, équilibre exemplaire.</p>
         </div>
         <div class="grade-card grade-card--B">
           <div class="grade-card__top">
-            <div class="badge badge--md badge--B">B</div>
-            <div>
-              <div class="grade-card__name">Fiable</div>
-              <div class="grade-card__threshold">70 – 85%</div>
-            </div>
+            <span class="badge badge--md badge--B">B</span>
+            <div class="grade-card__name">Fiable</div>
+            <div class="grade-card__threshold">70 – 85 %</div>
           </div>
-          <div class="grade-card__desc">Contenu solide avec quelques lacunes mineures. Recommandable dans un usage informé, quelques précautions à prendre.</div>
+          <p class="grade-card__desc">Contenu solide avec lacunes mineures. Recommandable dans un contexte informé, quelques précautions à prendre.</p>
         </div>
         <div class="grade-card grade-card--C">
           <div class="grade-card__top">
-            <div class="badge badge--md badge--C">C</div>
-            <div>
-              <div class="grade-card__name">Acceptable</div>
-              <div class="grade-card__threshold">50 – 69%</div>
-            </div>
+            <span class="badge badge--md badge--C">C</span>
+            <div class="grade-card__name">Acceptable</div>
+            <div class="grade-card__threshold">50 – 69 %</div>
           </div>
-          <div class="grade-card__desc">Informations partiellement fiables mais à compléter. Lecture critique nécessaire ; ne pas utiliser comme source unique.</div>
+          <p class="grade-card__desc">Informations partiellement fiables. Lecture critique nécessaire ; ne pas utiliser comme source unique.</p>
         </div>
         <div class="grade-card grade-card--D">
           <div class="grade-card__top">
-            <div class="badge badge--md badge--D">D</div>
-            <div>
-              <div class="grade-card__name">Insuffisant</div>
-              <div class="grade-card__threshold">30 – 49%</div>
-            </div>
+            <span class="badge badge--md badge--D">D</span>
+            <div class="grade-card__name">Insuffisant</div>
+            <div class="grade-card__threshold">30 – 49 %</div>
           </div>
-          <div class="grade-card__desc">Déficiences significatives : manque de sources, affirmations non étayées, biais importants. Utilisation déconseillée.</div>
+          <p class="grade-card__desc">Déficiences significatives : manque de sources, affirmations non étayées, biais importants. Usage déconseillé.</p>
         </div>
         <div class="grade-card grade-card--E">
           <div class="grade-card__top">
-            <div class="badge badge--md badge--E">E</div>
-            <div>
-              <div class="grade-card__name">Obscurant</div>
-              <div class="grade-card__threshold">&lt; 30%</div>
-            </div>
+            <span class="badge badge--md badge--E">E</span>
+            <div class="grade-card__name">Obscurant</div>
+            <div class="grade-card__threshold">&lt; 30 %</div>
           </div>
-          <div class="grade-card__desc">Contenu trompeur, manipulatoire ou activement nuisible. Désinformation caractérisée. Ne pas diffuser.</div>
+          <p class="grade-card__desc">Contenu trompeur, manipulatoire ou activement nuisible. Désinformation caractérisée. Ne pas diffuser.</p>
         </div>
         <div class="grade-card grade-card--N">
           <div class="grade-card__top">
-            <div class="badge badge--md badge--N">N</div>
-            <div>
-              <div class="grade-card__name">Non évaluable</div>
-              <div class="grade-card__threshold">—</div>
-            </div>
+            <span class="badge badge--md badge--N">N</span>
+            <div class="grade-card__name">Non évaluable</div>
+            <div class="grade-card__threshold">—</div>
           </div>
-          <div class="grade-card__desc">Contenu hors périmètre : fiction, opinion déclarée, satire ou contenu trop court pour une évaluation valide.</div>
+          <p class="grade-card__desc">Hors périmètre : fiction, opinion déclarée, satire ou contenu trop court pour une évaluation valide.</p>
         </div>
+      </div>
+      <div class="text-center mt-32" data-animate>
+        <a href="referentiel.html" class="btn btn--outline">Lire le référentiel complet</a>
       </div>
     </div>
   </section>
 
-  <!-- CTA -->
-  <section class="section section--gray">
-    <div class="container">
-      <div class="cta-banner">
+  <!-- ── CTA ── -->
+  <section class="section">
+    <div class="container" data-animate>
+      <div class="cta-block">
         <h2>Prêt à certifier votre contenu ?</h2>
-        <p>API publique à 0,50 € l'évaluation. Intégration en moins d'une heure. Aucun engagement.</p>
-        <div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap;">
-          <a href="tarifs.html" class="btn btn--gold">Voir les tarifs</a>
-          <a href="api.html" class="btn btn--outline">Documentation API</a>
+        <p>Intégration en moins d'une heure. Première évaluation offerte. Aucun engagement.</p>
+        <div class="flex flex-wrap justify-center gap-12">
+          <a href="tarifs.html" class="btn btn--light">Voir les tarifs</a>
+          <a href="api.html" class="btn btn--ghost-white">Documentation API →</a>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- FOOTER -->
+  <!-- ── FOOTER ── -->
   <footer class="footer">
     <div class="container">
       <div class="footer__grid">
         <div>
-          <div style="display:flex;align-items:center;gap:10px;margin-bottom:12px;">
-            <div class="nav__logo-mark" style="background:var(--gold);width:36px;height:36px;border-radius:6px;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:16px;color:var(--navy-dark);">IS</div>
+          <div class="footer__brand">
+            <div class="nav__logo-mark">IS</div>
             <div class="footer__brand-name">Info-Score</div>
           </div>
-          <p class="footer__brand-desc">
-            Organisme de certification indépendant de la qualité informationnelle.
-            Cadre RUB — Réalité, Utilité, Bonté. Association loi 1901.
-          </p>
-          <a href="mailto:contact@info-score.org" style="font-size:14px;color:rgba(255,255,255,.6);transition:color .2s;" onmouseover="this.style.color='white'" onmouseout="this.style.color='rgba(255,255,255,.6)'">
-            contact@info-score.org
-          </a>
+          <p class="footer__brand-desc">Organisme de certification indépendant de la qualité informationnelle. Cadre RUB — Réalité, Utilité, Bonté. Association loi 1901.</p>
+          <a href="mailto:contact@info-score.org" class="footer__mail">contact@info-score.org</a>
         </div>
         <div>
           <div class="footer__col-title">Navigation</div>
@@ -391,30 +316,35 @@
         <div>
           <div class="footer__col-title">Ressources</div>
           <ul class="footer__links">
-            <li><a href="https://github.com/Info-Score/info-score" target="_blank" rel="noopener">GitHub</a></li>
-            <li><a href="api.html">Documentation API</a></li>
-            <li><a href="referentiel.html#formule">Formule de calcul</a></li>
             <li><a href="referentiel.html#criteres">Les 12 critères</a></li>
+            <li><a href="referentiel.html#formule">Formule de calcul</a></li>
+            <li><a href="api.html">Documentation API</a></li>
+            <li><a href="https://github.com/Info-Score/info-score" target="_blank" rel="noopener">GitHub (open source)</a></li>
           </ul>
         </div>
         <div>
           <div class="footer__col-title">Contact</div>
           <ul class="footer__links">
-            <li><a href="mailto:contact@info-score.org">Évaluation &amp; partenariats</a></li>
+            <li><a href="mailto:contact@info-score.org">Évaluations &amp; partenariats</a></li>
             <li><a href="mailto:presse@info-score.org">Presse</a></li>
-            <li><a href="tarifs.html#pro">Offre Pro (devis)</a></li>
+            <li><a href="tarifs.html">Offre Pro (devis)</a></li>
             <li><a href="mailto:legal@info-score.org">Mentions légales</a></li>
           </ul>
         </div>
       </div>
       <div class="footer__bottom">
         <div>© 2026 Association Info-Score — Association loi 1901 — Organisme de certification indépendant</div>
-        <div class="footer__legal">
-          <a href="https://github.com/Info-Score/info-score" target="_blank" rel="noopener">GitHub</a>
-        </div>
+        <a href="https://github.com/Info-Score/info-score" target="_blank" rel="noopener" style="color:rgba(255,255,255,.3);transition:color .2s;" onmouseover="this.style.color='rgba(255,255,255,.7)'" onmouseout="this.style.color='rgba(255,255,255,.3)'">GitHub</a>
       </div>
     </div>
   </footer>
 
+  <script>
+    // Scroll animations
+    const obs = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('is-visible'); });
+    }, { threshold: 0.07, rootMargin: '0px 0px -40px 0px' });
+    document.querySelectorAll('[data-animate]').forEach(el => obs.observe(el));
+  </script>
 </body>
 </html>
