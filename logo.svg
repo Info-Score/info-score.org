@@ -1,10 +1,10 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500" width="500" height="500">
-  <!-- Background -->
-  <rect width="500" height="500" fill="#ffffff"/>
-  <!-- Shield shape -->
-  <path d="M250 30 L440 107 L440 265 C440 368 356 454 250 484 C144 454 60 368 60 265 L60 107 Z" fill="#0f2b5b"/>
+  <!-- Shield shape — clean, institutional -->
+  <path d="M250 28 L435 110 L435 260 C435 370 352 452 250 482 C148 452 65 370 65 260 L65 110 Z" fill="#0f2b5b"/>
+  <!-- Inner shield highlight -->
+  <path d="M250 52 L415 125 L415 258 C415 356 340 430 250 458 C160 430 85 356 85 258 L85 125 Z" fill="none" stroke="rgba(255,255,255,0.12)" stroke-width="2"/>
   <!-- Letter i — dot -->
-  <circle cx="250" cy="164" r="31" fill="#ffffff"/>
+  <circle cx="250" cy="168" r="28" fill="#ffffff"/>
   <!-- Letter i — stem -->
-  <rect x="219" y="219" width="62" height="156" rx="23" fill="#ffffff"/>
+  <rect x="222" y="222" width="56" height="148" rx="20" fill="#ffffff"/>
 </svg>
