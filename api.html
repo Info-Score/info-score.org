@@ -6,14 +6,16 @@
   <title>API REST — Info-Score</title>
   <meta name="description" content="Documentation de l'API REST Info-Score : évaluer un contenu, récupérer un score, obtenir un certificat. Exemples Python, JS, cURL.">
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Info-Score">
   <meta property="og:title" content="API REST — Info-Score">
   <meta property="og:description" content="Documentation de l'API REST Info-Score : évaluer un contenu, récupérer un score, obtenir un certificat. Exemples Python, JS, cURL.">
+  <meta property="og:url" content="https://info-score.org/api.html">
   <meta property="og:image" content="https://info-score.org/og-image.png">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
   <meta property="og:image:type" content="image/png">
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="https://info-score.org/api.html">
+  <meta name="twitter:card" content="summary_large_image">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Lora:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
@@ -27,7 +29,7 @@
     <div class="container">
       <div class="nav__inner">
         <a href="index.html" class="nav__logo">
-          <div class="nav__logo-mark">IS</div>
+          <svg class="nav__logo-mark" viewBox="0 0 32 32" aria-hidden="true"><path d="M16 2 L28 7 L28 17 C28 23.5 22.5 29 16 31 C9.5 29 4 23.5 4 17 L4 7 Z" fill="#0f2b5b" stroke="#b5922b" stroke-width="1.5"/><circle cx="16" cy="10.5" r="2" fill="#ffffff"/><rect x="14" y="14" width="4" height="10" rx="1.5" fill="#ffffff"/></svg>
           Info-Score
         </a>
         <div class="nav__links" id="navLinks">
@@ -55,7 +57,7 @@
       <h1>API REST Info-Score</h1>
       <p>Intégrez la certification informationnelle dans vos outils en quelques lignes. API JSON simple, documentée, versionnée.</p>
       <div class="page-header-actions">
-        <a href="https://github.com/Info-Score/info-score.org/blob/main/openapi.yaml" target="_blank" rel="noopener" class="btn btn--outline btn--sm">
+        <a href="https://github.com/Info-Score/info-score/blob/main/openapi.yaml" target="_blank" rel="noopener" class="btn btn--outline btn--sm">
           <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
           Spec OpenAPI sur GitHub
         </a>
@@ -488,7 +490,7 @@ console.log(`Grade ${score.grade} — ${score.total}/100`);</pre>
         <p>Première évaluation offerte. Créez votre compte en 2 minutes.</p>
         <div class="flex flex-wrap justify-center gap-12">
           <a href="mailto:contact@info-score.org?subject=Création de compte API" class="btn btn--light">Obtenir une clé API</a>
-          <a href="https://github.com/Info-Score/info-score.org/blob/main/openapi.yaml" target="_blank" rel="noopener" class="btn btn--ghost-white">Spec complète sur GitHub →</a>
+          <a href="https://github.com/Info-Score/info-score/blob/main/openapi.yaml" target="_blank" rel="noopener" class="btn btn--ghost-white">Spec complète sur GitHub →</a>
         </div>
       </div>
     </div>
@@ -502,7 +504,7 @@ console.log(`Grade ${score.grade} — ${score.total}/100`);</pre>
       <div class="footer__grid">
         <div>
           <div class="footer__brand">
-            <div class="nav__logo-mark">IS</div>
+            <svg class="nav__logo-mark" viewBox="0 0 32 32" aria-hidden="true"><path d="M16 2 L28 7 L28 17 C28 23.5 22.5 29 16 31 C9.5 29 4 23.5 4 17 L4 7 Z" fill="#0f2b5b" stroke="#b5922b" stroke-width="1.5"/><circle cx="16" cy="10.5" r="2" fill="#ffffff"/><rect x="14" y="14" width="4" height="10" rx="1.5" fill="#ffffff"/></svg>
             <div class="footer__brand-name">Info-Score</div>
           </div>
           <p class="footer__brand-desc">Organisme de certification indépendant de la qualité informationnelle. Association loi 1901.</p>
@@ -525,7 +527,7 @@ console.log(`Grade ${score.grade} — ${score.total}/100`);</pre>
             <li><a href="#score">GET /score</a></li>
             <li><a href="#certificate">GET /certificate</a></li>
             <li><a href="#stats">GET /stats</a></li>
-            <li><a href="https://github.com/Info-Score/info-score.org/blob/main/openapi.yaml" target="_blank" rel="noopener">OpenAPI sur GitHub</a></li>
+            <li><a href="https://github.com/Info-Score/info-score/blob/main/openapi.yaml" target="_blank" rel="noopener">OpenAPI sur GitHub</a></li>
           </ul>
         </div>
         <div>

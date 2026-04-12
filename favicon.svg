@@ -1,11 +1,8 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
-  <!-- Shield body -->
-  <path d="M16 1.5 L29.5 6.5 L29.5 17.5 C29.5 24.5 16 30.5 16 30.5 C16 30.5 2.5 24.5 2.5 17.5 L2.5 6.5 Z" fill="#0f2b5b" stroke="#b5922b" stroke-width="1.8"/>
-  <!-- Gold divider line -->
-  <line x1="7" y1="13.5" x2="25" y2="13.5" stroke="#b5922b" stroke-width="0.9" stroke-linecap="round"/>
-  <!-- IS monogram -->
-  <text x="16" y="24" text-anchor="middle" fill="#ffffff" font-family="Georgia, 'Times New Roman', serif" font-size="9.5" font-weight="700" letter-spacing="1.5">IS</text>
-  <!-- Small gold stars at top corners of shield -->
-  <polygon points="9,9 9.6,10.8 11.5,10.8 10,11.8 10.6,13.5 9,12.4 7.4,13.5 8,11.8 6.5,10.8 8.4,10.8" fill="#b5922b" transform="scale(0.6) translate(5.5, 4)"/>
-  <polygon points="9,9 9.6,10.8 11.5,10.8 10,11.8 10.6,13.5 9,12.4 7.4,13.5 8,11.8 6.5,10.8 8.4,10.8" fill="#b5922b" transform="scale(0.6) translate(30.5, 4)"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32">
+  <!-- Shield body with gold border -->
+  <path d="M16 2 L28 7 L28 17 C28 23.5 22.5 29 16 31 C9.5 29 4 23.5 4 17 L4 7 Z" fill="#0f2b5b" stroke="#b5922b" stroke-width="1.5"/>
+  <!-- Letter i — dot -->
+  <circle cx="16" cy="10.5" r="2" fill="#ffffff"/>
+  <!-- Letter i — stem -->
+  <rect x="14" y="14" width="4" height="10" rx="1.5" fill="#ffffff"/>
 </svg>
