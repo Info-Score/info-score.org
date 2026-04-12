@@ -3,45 +3,22 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>API — Info-Score</title>
-  <meta name="description" content="Documentation de l'API REST Info-Score : évaluer un contenu, récupérer un certificat, consulter un score. Exemples JSON complets.">
+  <title>API REST — Info-Score</title>
+  <meta name="description" content="Documentation de l'API REST Info-Score : évaluer un contenu, récupérer un score, obtenir un certificat. Exemples Python, JS, cURL.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
-  <style>
-    .api-sidebar {
-      position: sticky; top: 80px; height: fit-content;
-      background: var(--white); border: 1px solid var(--gray-200);
-      border-radius: var(--radius-lg); padding: 20px; box-shadow: var(--shadow);
-    }
-    .api-sidebar-title { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: var(--gray-400); margin-bottom: 12px; }
-    .api-sidebar a { display: block; font-size: 13px; color: var(--gray-600); padding: 6px 0; border-bottom: 1px solid var(--gray-100); transition: color .15s; }
-    .api-sidebar a:last-child { border-bottom: none; }
-    .api-sidebar a:hover { color: var(--navy); }
-    .api-layout { display: grid; grid-template-columns: 220px 1fr; gap: 32px; align-items: start; }
-    .api-section { margin-bottom: 56px; }
-    .api-section h2 { font-size: 22px; font-weight: 800; letter-spacing: -.5px; margin-bottom: 8px; padding-bottom: 12px; border-bottom: 2px solid var(--gray-100); }
-    .api-section h3 { font-size: 16px; font-weight: 700; margin: 24px 0 10px; }
-    .api-section p { font-size: 14px; color: var(--gray-600); line-height: 1.7; margin-bottom: 14px; }
-    code { background: var(--gray-100); padding: 2px 6px; border-radius: 4px; font-family: 'SF Mono', 'Consolas', monospace; font-size: 13px; color: var(--navy); }
-    .note-box { background: #eff6ff; border-left: 4px solid #2563eb; border-radius: 0 var(--radius) var(--radius) 0; padding: 14px 18px; font-size: 14px; color: #1e40af; margin: 16px 0; }
-    .warn-box { background: #fefce8; border-left: 4px solid var(--gold); border-radius: 0 var(--radius) var(--radius) 0; padding: 14px 18px; font-size: 14px; color: #854d0e; margin: 16px 0; }
-    .base-url { background: var(--navy); color: var(--gold-light); padding: 14px 20px; border-radius: var(--radius); font-family: monospace; font-size: 15px; margin: 12px 0 20px; }
-    @media (max-width: 768px) { .api-layout { grid-template-columns: 1fr; } .api-sidebar { display: none; } }
-  </style>
 </head>
 <body>
 
+  <!-- ── NAV ── -->
   <nav class="nav">
     <div class="container">
       <div class="nav__inner">
         <a href="index.html" class="nav__logo">
           <div class="nav__logo-mark">IS</div>
-          <div>
-            <span class="nav__logo-text">Info-Score</span>
-            <span class="nav__logo-sub">Certification informationnelle</span>
-          </div>
+          Info-Score
         </a>
         <div class="nav__links" id="navLinks">
           <a href="index.html" class="nav__link">Accueil</a>
@@ -51,84 +28,84 @@
           <a href="tarifs.html" class="nav__cta">Tarifs</a>
         </div>
         <button class="nav__toggle" onclick="document.getElementById('navLinks').classList.toggle('open')" aria-label="Menu">
-          <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M3 12h18M3 6h18M3 18h18"/></svg>
+          <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path d="M3 12h18M3 6h18M3 18h18"/>
+          </svg>
         </button>
       </div>
     </div>
   </nav>
 
-  <!-- PAGE HERO -->
-  <div style="background: linear-gradient(135deg, var(--navy-dark), var(--navy)); padding: 56px 0 48px; color:white;">
-    <div class="container">
-      <div class="section-tag" style="color:var(--gold-light);">Documentation technique</div>
-      <h1 style="font-size:clamp(28px,4vw,44px);font-weight:800;letter-spacing:-1px;margin-bottom:14px;line-height:1.2;">
-        API REST Info-Score
-      </h1>
-      <p style="font-size:17px;color:rgba(255,255,255,.75);max-width:600px;line-height:1.65;">
-        Intégrez la certification informationnelle dans vos outils en quelques lignes.
-        API JSON simple, documentée, versionnée. Clé API requise.
-      </p>
-      <div style="margin-top:24px;display:flex;gap:12px;flex-wrap:wrap;align-items:center;">
-        <a href="https://github.com/Info-Score/info-score" target="_blank" rel="noopener" class="btn btn--outline" style="font-size:14px;padding:10px 20px;">
+  <!-- ── PAGE HEADER ── -->
+  <div class="page-header">
+    <div class="container" data-animate>
+      <div class="section-label">Documentation technique</div>
+      <h1>API REST Info-Score</h1>
+      <p>Intégrez la certification informationnelle dans vos outils en quelques lignes. API JSON simple, documentée, versionnée.</p>
+      <div class="page-header-actions">
+        <a href="https://github.com/Info-Score/info-score" target="_blank" rel="noopener" class="btn btn--outline btn--sm">
+          <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
           Spec OpenAPI sur GitHub
         </a>
-        <a href="tarifs.html" class="btn btn--gold" style="font-size:14px;padding:10px 20px;">Obtenir une clé API</a>
-        <span style="font-size:13px;color:rgba(255,255,255,.5);">v1.0 · REST / JSON · HTTPS</span>
+        <a href="tarifs.html" class="btn btn--dark btn--sm">Obtenir une clé API</a>
+        <span style="font-size:13px;color:var(--ink-4);align-self:center;">v1.0 · REST / JSON · HTTPS</span>
       </div>
     </div>
   </div>
 
+  <!-- ── MAIN ── -->
   <section class="section">
     <div class="container">
       <div class="api-layout">
 
         <!-- Sidebar -->
-        <div class="api-sidebar">
-          <div class="api-sidebar-title">Sommaire</div>
+        <aside class="api-toc">
+          <div class="api-toc-title">Sommaire</div>
+          <a href="#base">Base URL</a>
           <a href="#auth">Authentification</a>
           <a href="#errors">Codes d'erreur</a>
           <a href="#evaluate">POST /evaluate</a>
           <a href="#score">GET /score/{id}</a>
           <a href="#certificate">GET /certificate/{id}</a>
           <a href="#stats">GET /stats</a>
-          <a href="#sdks">SDKs &amp; exemples</a>
-          <div class="api-sidebar-title" style="margin-top:16px;">Ressources</div>
+          <a href="#sdks">Exemples de code</a>
+          <div class="api-toc-title" style="margin-top:16px;">Ressources</div>
           <a href="referentiel.html">Référentiel RUB</a>
           <a href="tarifs.html">Tarifs API</a>
           <a href="https://github.com/Info-Score/info-score" target="_blank" rel="noopener">GitHub</a>
-        </div>
+        </aside>
 
-        <!-- Main content -->
+        <!-- Content -->
         <div>
 
           <!-- Base URL -->
-          <div class="api-section" id="base">
+          <div class="api-section" id="base" data-animate>
             <h2>Base URL</h2>
             <div class="base-url">https://api.info-score.org/v1</div>
             <p>Toutes les requêtes doivent utiliser HTTPS. Le contenu retourné est en <code>application/json; charset=utf-8</code>.</p>
-            <div class="note-box">
-              <strong>Version actuelle :</strong> v1. Les versions précédentes sont maintenues 12 mois après la sortie d'une nouvelle version majeure. L'en-tête <code>X-API-Version</code> indique la version utilisée dans chaque réponse.
+            <div class="note">
+              <strong>Version actuelle : v1.</strong> Les versions précédentes sont maintenues 12 mois après la sortie d'une nouvelle version majeure. L'en-tête <code>X-API-Version</code> indique la version utilisée dans chaque réponse.
             </div>
           </div>
 
           <!-- Auth -->
-          <div class="api-section" id="auth">
+          <div class="api-section" id="auth" data-animate>
             <h2>Authentification</h2>
             <p>Toutes les requêtes doivent inclure votre clé API dans l'en-tête <code>Authorization</code>.</p>
             <pre>Authorization: Bearer is_sk_votre_cle_api</pre>
-            <p>La clé API est disponible dans votre tableau de bord après inscription. Ne partagez jamais votre clé — elle identifie votre compte et est liée à votre facturation.</p>
-            <div class="warn-box">
-              <strong>Sécurité :</strong> N'incluez jamais votre clé API directement dans du code front-end ou dans un dépôt Git public. Utilisez des variables d'environnement côté serveur.
+            <p>La clé API est disponible dans votre tableau de bord après inscription. Elle identifie votre compte et est liée à votre facturation.</p>
+            <div class="warn">
+              <strong>Sécurité :</strong> N'incluez jamais votre clé API dans du code front-end ou dans un dépôt Git public. Utilisez des variables d'environnement côté serveur.
             </div>
           </div>
 
           <!-- Errors -->
-          <div class="api-section" id="errors">
+          <div class="api-section" id="errors" data-animate>
             <h2>Codes d'erreur</h2>
             <div class="table-wrap">
               <table>
                 <thead>
-                  <tr><th>Code HTTP</th><th>Code erreur</th><th>Description</th></tr>
+                  <tr><th>HTTP</th><th>Code erreur</th><th>Description</th></tr>
                 </thead>
                 <tbody>
                   <tr><td><code>400</code></td><td><code>invalid_request</code></td><td>Paramètres manquants ou invalides</td></tr>
@@ -136,34 +113,35 @@
                   <tr><td><code>402</code></td><td><code>insufficient_credits</code></td><td>Solde insuffisant pour cette opération</td></tr>
                   <tr><td><code>404</code></td><td><code>not_found</code></td><td>Évaluation ou certificat introuvable</td></tr>
                   <tr><td><code>422</code></td><td><code>content_too_short</code></td><td>Contenu inférieur à 200 mots — non évaluable</td></tr>
-                  <tr><td><code>429</code></td><td><code>rate_limited</code></td><td>Trop de requêtes (max 60/minute)</td></tr>
+                  <tr><td><code>429</code></td><td><code>rate_limited</code></td><td>Trop de requêtes (max 60 / minute)</td></tr>
                   <tr><td><code>500</code></td><td><code>internal_error</code></td><td>Erreur serveur — réessayez dans quelques instants</td></tr>
                 </tbody>
               </table>
             </div>
             <h3>Format des erreurs</h3>
-            <pre>{
+<pre>{
   "error": {
     "code": "insufficient_credits",
-    "message": "Votre solde est insuffisant. Rechargez votre compte sur https://info-score.org/compte",
+    "message": "Votre solde est insuffisant.",
     "details": {
       "balance": 0.30,
-      "required": 0.50
+      "required": 1.00
     }
   }
 }</pre>
           </div>
 
           <!-- POST /evaluate -->
-          <div class="api-section" id="evaluate">
+          <div class="api-section" id="evaluate" data-animate>
+            <h2>Endpoints</h2>
             <div class="endpoint">
               <div class="endpoint-header">
                 <span class="method method--post">POST</span>
                 <span class="endpoint-path">/evaluate</span>
-                <span class="endpoint-desc" style="margin-left:auto;font-size:13px;color:var(--gray-400);">0,50 € / requête</span>
+                <span class="endpoint-price">1,00 € / requête</span>
               </div>
               <div class="endpoint-body">
-                <p>Soumet un contenu à l'évaluation RUB. Retourne le score sur 12 critères, le grade et les justifications.</p>
+                <p>Soumet un contenu à l'évaluation RUB. Retourne le score sur les 12 critères, le grade et les justifications.</p>
 
                 <h3>Corps de la requête</h3>
                 <table class="param-table">
@@ -172,13 +150,13 @@
                     <tr>
                       <td><span class="param-name">url</span></td>
                       <td><code>string</code></td>
-                      <td><span class="param-opt">optionnel*</span></td>
+                      <td><span class="param-opt">optionnel *</span></td>
                       <td>URL publique du contenu à évaluer</td>
                     </tr>
                     <tr>
                       <td><span class="param-name">text</span></td>
                       <td><code>string</code></td>
-                      <td><span class="param-opt">optionnel*</span></td>
+                      <td><span class="param-opt">optionnel *</span></td>
                       <td>Texte brut du contenu (min. 200 mots)</td>
                     </tr>
                     <tr>
@@ -191,20 +169,20 @@
                       <td><span class="param-name">language</span></td>
                       <td><code>string</code></td>
                       <td><span class="param-opt">optionnel</span></td>
-                      <td>Code langue ISO 639-1 (défaut: <code>fr</code>). Supporte: <code>fr</code>, <code>en</code>, <code>es</code>, <code>de</code></td>
+                      <td>Code ISO 639-1 (défaut : <code>fr</code>). Supporte : <code>fr</code>, <code>en</code>, <code>es</code>, <code>de</code></td>
                     </tr>
                     <tr>
                       <td><span class="param-name">with_certificate</span></td>
                       <td><code>boolean</code></td>
                       <td><span class="param-opt">optionnel</span></td>
-                      <td>Si <code>true</code>, génère un certificat JSON signé (+0,50 €). Défaut: <code>false</code></td>
+                      <td>Si <code>true</code>, génère un certificat JSON signé (+0,50 €). Défaut : <code>false</code></td>
                     </tr>
                   </tbody>
                 </table>
-                <p style="font-size:13px;color:var(--gray-400);">* L'un des deux paramètres <code>url</code> ou <code>text</code> est obligatoire.</p>
+                <p style="font-size:12px;color:var(--ink-4);margin-top:8px;">* L'un des deux paramètres <code>url</code> ou <code>text</code> est obligatoire.</p>
 
-                <h3>Exemple de requête</h3>
-                <pre>curl -X POST https://api.info-score.org/v1/evaluate \
+                <h3>Exemple de requête (cURL)</h3>
+<pre>curl -X POST https://api.info-score.org/v1/evaluate \
   -H "Authorization: Bearer is_sk_votre_cle_api" \
   -H "Content-Type: application/json" \
   -d '{
@@ -214,7 +192,7 @@
   }'</pre>
 
                 <h3>Réponse</h3>
-                <pre>{
+<pre>{
   "id": "eval_01J8X4K7Q2MWNVF3HB9CKPZGRD",
   "status": "completed",
   "created_at": "2026-04-12T14:32:07Z",
@@ -225,7 +203,6 @@
     "total": 77.6,
     "grade": "B",
     "grade_label": "Fiable",
-    "max": 100,
     "dimensions": {
       "R": { "score": 79.2, "weight": 0.45 },
       "U": { "score": 80.0, "weight": 0.25 },
@@ -233,18 +210,30 @@
     }
   },
   "criteria": {
-    "R1": { "note": 2, "coefficient": 3, "points": 6, "justification": "Les affirmations principales s'appuient sur le rapport GIEC AR6. Quelques chiffres non sourcés dans la conclusion." },
-    "R2": { "note": 3, "coefficient": 3, "points": 9, "justification": "Sources primaires explicitement citées avec liens vers les publications originales." },
-    "R3": { "note": 2, "coefficient": 2, "points": 4, "justification": "Les marges d'incertitude sont mentionnées mais les intervalles de confiance ne sont pas reportés." },
-    "R4": { "note": 2, "coefficient": 2, "points": 4, "justification": "Contexte temporel présent. Comparaisons géographiques insuffisantes." },
-    "R5": { "note": 3, "coefficient": 1, "points": 3, "justification": "Toutes les affirmations sont vérifiables à partir des sources fournies." },
-    "U1": { "note": 3, "coefficient": 2, "points": 6, "justification": "Article bien structuré, vocabulaire technique défini, accessible au grand public." },
-    "U2": { "note": 2, "coefficient": 2, "points": 4, "justification": "Des recommandations pratiques seraient bienvenues. L'analyse reste descriptive." },
-    "U3": { "note": 2, "coefficient": 1, "points": 2, "justification": "Le périmètre annoncé est couvert. Quelques lacunes sur les politiques d'adaptation." },
-    "B1": { "note": 2, "coefficient": 3, "points": 6, "justification": "Points de vue critiques mentionnés mais rapidement. Pluralisme satisfaisant." },
-    "B2": { "note": 3, "coefficient": 2, "points": 6, "justification": "Auteur identifié, affiliation déclarée, aucun conflit d'intérêts apparent." },
-    "B3": { "note": 2, "coefficient": 2, "points": 4, "justification": "Ton factuel respectant l'autonomie du lecteur. Un passage légèrement alarmiste." },
-    "B4": { "note": 3, "coefficient": 1, "points": 3, "justification": "Contribution positive au débat public sur le climat. Aucun élément nuisible." }
+    "R1": { "note": 2, "coefficient": 3, "points": 6,
+            "justification": "Les affirmations s'appuient sur le rapport GIEC AR6. Quelques chiffres non sourcés." },
+    "R2": { "note": 3, "coefficient": 3, "points": 9,
+            "justification": "Sources primaires citées avec liens vers les publications originales." },
+    "R3": { "note": 2, "coefficient": 2, "points": 4,
+            "justification": "Marges d'incertitude mentionnées, intervalles de confiance non reportés." },
+    "R4": { "note": 2, "coefficient": 2, "points": 4,
+            "justification": "Contexte temporel présent. Comparaisons géographiques insuffisantes." },
+    "R5": { "note": 3, "coefficient": 1, "points": 3,
+            "justification": "Affirmations vérifiables depuis les sources fournies." },
+    "U1": { "note": 3, "coefficient": 2, "points": 6,
+            "justification": "Article bien structuré, vocabulaire technique défini." },
+    "U2": { "note": 2, "coefficient": 2, "points": 4,
+            "justification": "Analyse descriptive. Des recommandations pratiques seraient bienvenues." },
+    "U3": { "note": 2, "coefficient": 1, "points": 2,
+            "justification": "Périmètre couvert. Quelques lacunes sur les politiques d'adaptation." },
+    "B1": { "note": 2, "coefficient": 3, "points": 6,
+            "justification": "Points de vue critiques mentionnés mais rapidement." },
+    "B2": { "note": 3, "coefficient": 2, "points": 6,
+            "justification": "Auteur identifié, affiliation déclarée, aucun conflit d'intérêts apparent." },
+    "B3": { "note": 2, "coefficient": 2, "points": 4,
+            "justification": "Ton factuel. Un passage légèrement alarmiste." },
+    "B4": { "note": 3, "coefficient": 1, "points": 3,
+            "justification": "Contribution positive au débat public." }
   },
   "raw_points": 57,
   "max_points": 87,
@@ -256,17 +245,17 @@
           </div>
 
           <!-- GET /score/{id} -->
-          <div class="api-section" id="score">
+          <div class="api-section" id="score" data-animate>
             <div class="endpoint">
               <div class="endpoint-header">
                 <span class="method method--get">GET</span>
                 <span class="endpoint-path">/score/{id}</span>
-                <span class="endpoint-desc" style="margin-left:auto;font-size:13px;color:var(--gray-400);">Gratuit</span>
+                <span class="endpoint-price">Gratuit</span>
               </div>
               <div class="endpoint-body">
                 <p>Récupère les résultats d'une évaluation existante par son identifiant. Toutes les évaluations publiques sont accessibles gratuitement.</p>
 
-                <h3>Paramètres de chemin</h3>
+                <h3>Paramètre de chemin</h3>
                 <table class="param-table">
                   <thead><tr><th>Paramètre</th><th>Type</th><th>Description</th></tr></thead>
                   <tbody>
@@ -278,12 +267,12 @@
                   </tbody>
                 </table>
 
-                <h3>Exemple de requête</h3>
-                <pre>curl https://api.info-score.org/v1/score/eval_01J8X4K7Q2MWNVF3HB9CKPZGRD \
+                <h3>Exemple</h3>
+<pre>curl https://api.info-score.org/v1/score/eval_01J8X4K7Q2MWNVF3HB9CKPZGRD \
   -H "Authorization: Bearer is_sk_votre_cle_api"</pre>
 
                 <h3>Réponse (résumé)</h3>
-                <pre>{
+<pre>{
   "id": "eval_01J8X4K7Q2MWNVF3HB9CKPZGRD",
   "status": "completed",
   "created_at": "2026-04-12T14:32:07Z",
@@ -300,29 +289,17 @@
           </div>
 
           <!-- GET /certificate/{id} -->
-          <div class="api-section" id="certificate">
+          <div class="api-section" id="certificate" data-animate>
             <div class="endpoint">
               <div class="endpoint-header">
                 <span class="method method--get">GET</span>
                 <span class="endpoint-path">/certificate/{id}</span>
-                <span class="endpoint-desc" style="margin-left:auto;font-size:13px;color:var(--gray-400);">Gratuit (si déjà généré)</span>
+                <span class="endpoint-price">Gratuit (si déjà généré)</span>
               </div>
               <div class="endpoint-body">
                 <p>Récupère le certificat JSON signé d'une évaluation. Le certificat doit avoir été demandé lors de l'évaluation (<code>with_certificate: true</code>) ou via une commande séparée.</p>
 
-                <h3>Paramètres de chemin</h3>
-                <table class="param-table">
-                  <thead><tr><th>Paramètre</th><th>Type</th><th>Description</th></tr></thead>
-                  <tbody>
-                    <tr>
-                      <td><span class="param-name">id</span></td>
-                      <td><code>string</code></td>
-                      <td>Identifiant de l'évaluation (format <code>eval_*</code>)</td>
-                    </tr>
-                  </tbody>
-                </table>
-
-                <h3>Paramètres de requête optionnels</h3>
+                <h3>Paramètre de requête optionnel</h3>
                 <table class="param-table">
                   <thead><tr><th>Paramètre</th><th>Type</th><th>Description</th></tr></thead>
                   <tbody>
@@ -334,12 +311,12 @@
                   </tbody>
                 </table>
 
-                <h3>Exemple de requête</h3>
-                <pre>curl https://api.info-score.org/v1/certificate/eval_01J8X4K7Q2MWNVF3HB9CKPZGRD \
+                <h3>Exemple</h3>
+<pre>curl https://api.info-score.org/v1/certificate/eval_01J8X4K7Q2MWNVF3HB9CKPZGRD \
   -H "Authorization: Bearer is_sk_votre_cle_api"</pre>
 
                 <h3>Réponse</h3>
-                <pre>{
+<pre>{
   "certificate": {
     "id": "cert_01J8X4KBNJRW5PVTQ7DFHM23SY",
     "evaluation_id": "eval_01J8X4K7Q2MWNVF3HB9CKPZGRD",
@@ -361,7 +338,7 @@
 }</pre>
 
                 <h3>Intégrer le badge sur votre site</h3>
-                <pre>&lt;!-- Badge dynamique Info-Score --&gt;
+<pre>&lt;!-- Badge dynamique Info-Score --&gt;
 &lt;a href="https://info-score.org/cert/cert_01J8X4KBNJRW5PVTQ7DFHM23SY"
    target="_blank" title="Certifié Info-Score — Grade B"&gt;
   &lt;img src="https://api.info-score.org/v1/badge/cert_01J8X4KBNJRW5PVTQ7DFHM23SY.svg"
@@ -372,12 +349,12 @@
           </div>
 
           <!-- GET /stats -->
-          <div class="api-section" id="stats">
+          <div class="api-section" id="stats" data-animate>
             <div class="endpoint">
               <div class="endpoint-header">
                 <span class="method method--get">GET</span>
                 <span class="endpoint-path">/stats</span>
-                <span class="endpoint-desc" style="margin-left:auto;font-size:13px;color:var(--gray-400);">Gratuit</span>
+                <span class="endpoint-price">Gratuit</span>
               </div>
               <div class="endpoint-body">
                 <p>Retourne les statistiques globales de la plateforme. Données mises à jour toutes les heures.</p>
@@ -394,17 +371,17 @@
                     <tr>
                       <td><span class="param-name">domain</span></td>
                       <td><code>string</code></td>
-                      <td>Filtre par domaine source (ex: <code>lemonde.fr</code>)</td>
+                      <td>Filtre par domaine source (ex : <code>lemonde.fr</code>)</td>
                     </tr>
                   </tbody>
                 </table>
 
-                <h3>Exemple de requête</h3>
-                <pre>curl "https://api.info-score.org/v1/stats?since=2026-01-01" \
+                <h3>Exemple</h3>
+<pre>curl "https://api.info-score.org/v1/stats?since=2026-01-01" \
   -H "Authorization: Bearer is_sk_votre_cle_api"</pre>
 
                 <h3>Réponse</h3>
-                <pre>{
+<pre>{
   "total_evaluations": 12470,
   "average_score": 62.4,
   "grade_distribution": {
@@ -413,12 +390,10 @@
     "C": { "count": 3579, "percentage": 28.7 },
     "D": { "count": 2407, "percentage": 19.3 },
     "E": { "count": 1397, "percentage": 11.2 },
-    "N": { "count": 535,  "percentage": 4.3 }
+    "N": { "count": 535,  "percentage": 4.3  }
   },
   "dimension_averages": {
-    "R": 61.0,
-    "U": 68.0,
-    "B": 57.0
+    "R": 61.0, "U": 68.0, "B": 57.0
   },
   "last_updated": "2026-04-12T06:00:00Z"
 }</pre>
@@ -427,12 +402,12 @@
           </div>
 
           <!-- SDKs -->
-          <div class="api-section" id="sdks">
-            <h2>SDKs &amp; exemples</h2>
+          <div class="api-section" id="sdks" data-animate>
+            <h2>Exemples de code</h2>
             <p>Des exemples d'intégration sont disponibles sur GitHub pour les langages les plus courants.</p>
 
             <h3>Python</h3>
-            <pre>import httpx
+<pre>import httpx
 
 client = httpx.Client(
     base_url="https://api.info-score.org/v1",
@@ -445,10 +420,10 @@ response = client.post("/evaluate", json={
 })
 
 result = response.json()
-print(f"Grade: {result['score']['grade']} — Score: {result['score']['total']}/100")</pre>
+print(f"Grade : {result['score']['grade']} — Score : {result['score']['total']}/100")</pre>
 
-            <h3>JavaScript / Node.js</h3>
-            <pre>const response = await fetch('https://api.info-score.org/v1/evaluate', {
+            <h3>JavaScript / TypeScript</h3>
+<pre>const response = await fetch('https://api.info-score.org/v1/evaluate', {
   method: 'POST',
   headers: {
     'Authorization': 'Bearer is_sk_votre_cle_api',
@@ -463,15 +438,14 @@ print(f"Grade: {result['score']['grade']} — Score: {result['score']['total']}/
 const { score } = await response.json();
 console.log(`Grade ${score.grade} — ${score.total}/100`);</pre>
 
-            <h3>cURL (exemple minimal)</h3>
-            <pre>curl -X POST https://api.info-score.org/v1/evaluate \
+            <h3>cURL (minimal)</h3>
+<pre>curl -X POST https://api.info-score.org/v1/evaluate \
   -H "Authorization: Bearer is_sk_votre_cle_api" \
   -H "Content-Type: application/json" \
   -d '{"url":"https://exemple.fr/article","language":"fr"}'</pre>
 
-            <div class="note-box" style="margin-top:24px;">
-              <strong>SDK officiel Python</strong> (<code>pip install info-score</code>) en cours de développement.
-              Les contributions sont bienvenues sur <a href="https://github.com/Info-Score/info-score" target="_blank" rel="noopener" style="color:#1d4ed8;font-weight:600;">github.com/Info-Score/info-score</a>.
+            <div class="note" style="margin-top:24px;">
+              <strong>SDK officiel Python</strong> (<code>pip install info-score</code>) en cours de développement. Contributions bienvenues sur <a href="https://github.com/Info-Score/info-score" target="_blank" rel="noopener" style="color:#1d4ed8;font-weight:600;">github.com/Info-Score/info-score</a>.
             </div>
           </div>
 
@@ -480,30 +454,31 @@ console.log(`Grade ${score.grade} — ${score.total}/100`);</pre>
     </div>
   </section>
 
-  <!-- CTA -->
-  <section class="section section--gray">
-    <div class="container">
-      <div class="cta-banner">
+  <!-- ── CTA ── -->
+  <section class="section section--alt">
+    <div class="container" data-animate>
+      <div class="cta-block">
         <h2>Prêt à intégrer Info-Score ?</h2>
-        <p>Votre première évaluation est offerte. Créez votre compte en 2 minutes.</p>
-        <div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap;">
-          <a href="mailto:contact@info-score.org?subject=Création de compte API" class="btn btn--gold">Obtenir une clé API</a>
-          <a href="https://github.com/Info-Score/info-score" target="_blank" rel="noopener" class="btn btn--outline">Voir la spec complète</a>
+        <p>Première évaluation offerte. Créez votre compte en 2 minutes.</p>
+        <div class="flex flex-wrap justify-center gap-12">
+          <a href="mailto:contact@info-score.org?subject=Création de compte API" class="btn btn--light">Obtenir une clé API</a>
+          <a href="https://github.com/Info-Score/info-score" target="_blank" rel="noopener" class="btn btn--ghost-white">Spec complète sur GitHub →</a>
         </div>
       </div>
     </div>
   </section>
 
+  <!-- ── FOOTER ── -->
   <footer class="footer">
     <div class="container">
       <div class="footer__grid">
         <div>
-          <div style="display:flex;align-items:center;gap:10px;margin-bottom:12px;">
-            <div style="background:var(--gold);width:36px;height:36px;border-radius:6px;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:16px;color:var(--navy-dark);">IS</div>
+          <div class="footer__brand">
+            <div class="nav__logo-mark">IS</div>
             <div class="footer__brand-name">Info-Score</div>
           </div>
           <p class="footer__brand-desc">Organisme de certification indépendant de la qualité informationnelle. Association loi 1901.</p>
-          <a href="mailto:contact@info-score.org" style="font-size:14px;color:rgba(255,255,255,.6);">contact@info-score.org</a>
+          <a href="mailto:contact@info-score.org" class="footer__mail">contact@info-score.org</a>
         </div>
         <div>
           <div class="footer__col-title">Navigation</div>
@@ -539,5 +514,11 @@ console.log(`Grade ${score.grade} — ${score.total}/100`);</pre>
     </div>
   </footer>
 
+  <script>
+    const obs = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('is-visible'); });
+    }, { threshold: 0.07, rootMargin: '0px 0px -40px 0px' });
+    document.querySelectorAll('[data-animate]').forEach(el => obs.observe(el));
+  </script>
 </body>
 </html>
