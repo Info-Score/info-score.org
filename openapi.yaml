@@ -134,7 +134,7 @@ components:
           example: 87
         model:
           type: string
-          example: claude-opus-4-6
+          example: victoria-v2
         certificate:
           nullable: true
           $ref: '#/components/schemas/Certificate'
