@@ -11,9 +11,10 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
+  <a href="#main-content" class="skip-link">Aller au contenu principal</a>
 
   <!-- ── NAV ── -->
-  <nav class="nav">
+  <nav class="nav" aria-label="Navigation principale">
     <div class="container">
       <div class="nav__inner">
         <a href="index.html" class="nav__logo">
@@ -27,7 +28,7 @@
           <a href="api.html" class="nav__link">API</a>
           <a href="tarifs.html" class="nav__cta">Tarifs</a>
         </div>
-        <button class="nav__toggle" onclick="document.getElementById('navLinks').classList.toggle('open')" aria-label="Menu">
+        <button class="nav__toggle" onclick="const el=document.getElementById('navLinks');el.classList.toggle('open');this.setAttribute('aria-expanded',el.classList.contains('open'));" aria-label="Ouvrir le menu de navigation" aria-expanded="false">
           <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
             <path d="M3 12h18M3 6h18M3 18h18"/>
           </svg>
@@ -35,6 +36,8 @@
       </div>
     </div>
   </nav>
+
+  <main id="main-content">
 
   <!-- ── PAGE HEADER ── -->
   <div class="page-header">
@@ -81,7 +84,7 @@
       </div>
       <div style="display:grid;gap:16px;">
 
-        <div class="card" style="display:grid;grid-template-columns:96px 1fr;gap:32px;align-items:start;" data-animate>
+        <div class="card dim-card" data-animate>
           <div style="text-align:center;padding-top:4px;">
             <div class="rub-letter rub-letter--R" style="margin:0 auto 12px;">R</div>
             <div style="font-size:32px;font-weight:700;color:var(--gb);letter-spacing:-1px;line-height:1;">45%</div>
@@ -96,7 +99,7 @@
           </div>
         </div>
 
-        <div class="card" style="display:grid;grid-template-columns:96px 1fr;gap:32px;align-items:start;" data-animate>
+        <div class="card dim-card" data-animate>
           <div style="text-align:center;padding-top:4px;">
             <div class="rub-letter rub-letter--U" style="margin:0 auto 12px;">U</div>
             <div style="font-size:32px;font-weight:700;color:#059669;letter-spacing:-1px;line-height:1;">25%</div>
@@ -111,7 +114,7 @@
           </div>
         </div>
 
-        <div class="card" style="display:grid;grid-template-columns:96px 1fr;gap:32px;align-items:start;" data-animate>
+        <div class="card dim-card" data-animate>
           <div style="text-align:center;padding-top:4px;">
             <div class="rub-letter rub-letter--B" style="margin:0 auto 12px;">B</div>
             <div style="font-size:32px;font-weight:700;color:var(--gc);letter-spacing:-1px;line-height:1;">30%</div>
@@ -272,7 +275,7 @@
         </div>
       </div>
 
-      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:24px;" data-animate>
+      <div class="formula-stats-grid" data-animate>
         <div class="card" style="text-align:center;">
           <div style="font-size:36px;font-weight:700;color:var(--ink);letter-spacing:-1.5px;margin-bottom:6px;">87</div>
           <div style="font-size:14px;color:var(--ink-3);">Points maximum<br><span style="font-size:12px;color:var(--ink-4);">Σ de tous les max pondérés</span></div>
@@ -391,7 +394,7 @@
         <div class="section-label">Axe 5 — Processus d'évaluation</div>
         <h2 class="section-title">Comment est produit un score ?</h2>
       </div>
-      <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:16px;" data-animate>
+      <div class="process-grid" data-animate>
         <div class="card">
           <h3 style="font-size:16px;font-weight:700;margin-bottom:10px;display:flex;align-items:center;gap:8px;">
             <span style="font-size:20px;">🤖</span> Évaluation automatisée
@@ -433,6 +436,8 @@
       </div>
     </div>
   </section>
+
+  </main>
 
   <!-- ── FOOTER ── -->
   <footer class="footer">

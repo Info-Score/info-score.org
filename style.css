@@ -11,7 +11,7 @@
   --ink:       #0a0f1e;
   --ink-2:     #1e293b;
   --ink-3:     #475569;
-  --ink-4:     #94a3b8;
+  --ink-4:     #64748b;
   --surface:   #ffffff;
   --surface-2: #eef2f7;
   --surface-3: #e2e8f2;
@@ -656,4 +656,88 @@ pre code { background: none; padding: 0; color: inherit; font-size: inherit; }
   .kpi-grid    { grid-template-columns: 1fr; }
   .footer__grid { grid-template-columns: 1fr; }
   .hero__stat  { flex: 1 1 100%; }
+}
+
+/* ---- Skip link ---- */
+.skip-link {
+  position: absolute; top: -100%; left: 8px;
+  background: var(--accent); color: #fff;
+  padding: 8px 16px; border-radius: var(--r);
+  font-size: 14px; font-weight: 600; z-index: 1000;
+  text-decoration: none; white-space: nowrap;
+}
+.skip-link:focus { top: 8px; outline: 2px solid #fff; outline-offset: 2px; }
+
+/* ---- Focus visible ---- */
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+.nav__cta:focus-visible,
+.btn:focus-visible,
+.pricing-btn:focus-visible { border-radius: var(--r); }
+
+/* ---- Referentiel layout helpers ---- */
+.dim-card {
+  display: grid;
+  grid-template-columns: 96px 1fr;
+  gap: 32px;
+  align-items: start;
+}
+.formula-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin-top: 24px;
+}
+.process-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+}
+
+/* ---- Bar label wide variant ---- */
+.bar-label--wide { width: 200px; }
+
+/* ---- API mobile TOC nav ---- */
+.api-toc-mobile { display: none; }
+
+@media (max-width: 768px) {
+  .api-toc-mobile {
+    display: block;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--r-lg);
+    padding: 16px 20px;
+    margin-bottom: 32px;
+  }
+  .api-toc-mobile__title {
+    font-size: 11px; font-weight: 700;
+    text-transform: uppercase; letter-spacing: 1px;
+    color: var(--ink-4); margin-bottom: 10px;
+  }
+  .api-toc-mobile__links {
+    display: flex; flex-wrap: wrap; gap: 6px;
+    list-style: none;
+  }
+  .api-toc-mobile__links a {
+    font-size: 13px; color: var(--ink-3);
+    padding: 5px 10px; border-radius: var(--r);
+    border: 1px solid var(--border);
+    transition: all var(--t) var(--ease);
+    display: block;
+  }
+  .api-toc-mobile__links a:hover { color: var(--accent); border-color: var(--accent); }
+}
+@media (max-width: 600px) {
+  .dim-card { grid-template-columns: 1fr; gap: 16px; }
+  .formula-stats-grid { grid-template-columns: 1fr; }
+  .process-grid { grid-template-columns: 1fr; }
+}
+@media (max-width: 480px) {
+  .bar-label { width: 80px; font-size: 12px; }
+  .bar-label--wide { width: 120px; }
+  .bar-value { width: 36px; font-size: 12px; }
 }
