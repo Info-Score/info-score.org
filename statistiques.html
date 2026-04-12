@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Statistiques — Info-Score</title>
+  <meta name="description" content="Statistiques en temps réel des évaluations Info-Score : répartition des grades, score moyen, sources évaluées, tendances.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+  <style>
+    .chart-container { position: relative; }
+    .bar-fill { height: 14px; border-radius: 7px; transition: width .8s cubic-bezier(.4,0,.2,1); }
+    .bar-row { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; }
+    .bar-label { font-size: 13px; font-weight: 600; width: 160px; flex-shrink: 0; }
+    .bar-track { flex: 1; background: var(--gray-100); border-radius: 7px; overflow: hidden; }
+    .bar-value { font-size: 13px; color: var(--gray-600); width: 48px; text-align: right; flex-shrink: 0; }
+    .source-row { display: flex; align-items: center; justify-content: space-between; padding: 12px 0; border-bottom: 1px solid var(--gray-100); }
+    .source-row:last-child { border-bottom: none; }
+    .source-name { font-size: 14px; font-weight: 600; }
+    .source-meta { font-size: 13px; color: var(--gray-400); margin-top: 2px; }
+    .trend-up { color: var(--grade-a); font-weight: 700; }
+    .trend-down { color: var(--grade-e); font-weight: 700; }
+  </style>
+</head>
+<body>
+
+  <nav class="nav">
+    <div class="container">
+      <div class="nav__inner">
+        <a href="index.html" class="nav__logo">
+          <div class="nav__logo-mark">IS</div>
+          <div>
+            <span class="nav__logo-text">Info-Score</span>
+            <span class="nav__logo-sub">Certification informationnelle</span>
+          </div>
+        </a>
+        <div class="nav__links" id="navLinks">
+          <a href="index.html" class="nav__link">Accueil</a>
+          <a href="referentiel.html" class="nav__link">Référentiel</a>
+          <a href="statistiques.html" class="nav__link nav__link--active">Statistiques</a>
+          <a href="api.html" class="nav__link">API</a>
+          <a href="tarifs.html" class="nav__cta">Tarifs</a>
+        </div>
+        <button class="nav__toggle" onclick="document.getElementById('navLinks').classList.toggle('open')" aria-label="Menu">
+          <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M3 12h18M3 6h18M3 18h18"/></svg>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- PAGE HERO -->
+  <div style="background: linear-gradient(135deg, var(--navy-dark), var(--navy)); padding: 56px 0 48px; color:white;">
+    <div class="container">
+      <div class="section-tag" style="color:var(--gold-light);">Observatoire de la qualité informationnelle</div>
+      <h1 style="font-size:clamp(28px,4vw,44px);font-weight:800;letter-spacing:-1px;margin-bottom:14px;line-height:1.2;">
+        Statistiques Info-Score
+      </h1>
+      <p style="font-size:17px;color:rgba(255,255,255,.75);max-width:600px;line-height:1.65;">
+        Vue d'ensemble des évaluations réalisées depuis le lancement.
+        Données mises à jour quotidiennement. Toutes les évaluations sont publiques et auditables.
+      </p>
+      <div style="margin-top:16px;font-size:13px;color:rgba(255,255,255,.5);">
+        Dernière mise à jour : 12 avril 2026 à 06:00 UTC
+      </div>
+    </div>
+  </div>
+
+  <!-- KPIs -->
+  <section class="section section--gray">
+    <div class="container">
+      <div class="stats-kpi">
+        <div class="kpi-card">
+          <div class="kpi-value" id="count-evals">12 470</div>
+          <div class="kpi-label">Évaluations réalisées</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-value">62,4</div>
+          <div class="kpi-label">Score moyen / 100</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-value">1 847</div>
+          <div class="kpi-label">Sources uniques évaluées</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-value">847</div>
+          <div class="kpi-label">Certifications Premium</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CHARTS -->
+  <section class="section">
+    <div class="container">
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:32px;align-items:start;">
+
+        <!-- Donut chart -->
+        <div class="card">
+          <h2 style="font-size:18px;font-weight:700;margin-bottom:4px;">Répartition des grades</h2>
+          <p style="font-size:13px;color:var(--gray-400);margin-bottom:24px;">Sur 12 470 évaluations totales</p>
+          <div class="chart-container" style="max-width:280px;margin:0 auto;">
+            <canvas id="gradeDonut"></canvas>
+          </div>
+          <div style="margin-top:24px;display:grid;grid-template-columns:1fr 1fr;gap:8px;">
+            <div style="display:flex;align-items:center;gap:8px;font-size:13px;">
+              <span class="badge badge--sm badge--A">A</span>
+              <span>Exemplaire</span>
+              <span style="margin-left:auto;font-weight:700;">12,4%</span>
+            </div>
+            <div style="display:flex;align-items:center;gap:8px;font-size:13px;">
+              <span class="badge badge--sm badge--B">B</span>
+              <span>Fiable</span>
+              <span style="margin-left:auto;font-weight:700;">24,1%</span>
+            </div>
+            <div style="display:flex;align-items:center;gap:8px;font-size:13px;">
+              <span class="badge badge--sm badge--C">C</span>
+              <span>Acceptable</span>
+              <span style="margin-left:auto;font-weight:700;">28,7%</span>
+            </div>
+            <div style="display:flex;align-items:center;gap:8px;font-size:13px;">
+              <span class="badge badge--sm badge--D">D</span>
+              <span>Insuffisant</span>
+              <span style="margin-left:auto;font-weight:700;">19,3%</span>
+            </div>
+            <div style="display:flex;align-items:center;gap:8px;font-size:13px;">
+              <span class="badge badge--sm badge--E">E</span>
+              <span>Obscurant</span>
+              <span style="margin-left:auto;font-weight:700;">11,2%</span>
+            </div>
+            <div style="display:flex;align-items:center;gap:8px;font-size:13px;">
+              <span class="badge badge--sm badge--N">N</span>
+              <span>Non évaluable</span>
+              <span style="margin-left:auto;font-weight:700;">4,3%</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Scores by dimension -->
+        <div class="card">
+          <h2 style="font-size:18px;font-weight:700;margin-bottom:4px;">Score moyen par dimension</h2>
+          <p style="font-size:13px;color:var(--gray-400);margin-bottom:24px;">Moyenne globale sur l'ensemble des évaluations</p>
+          <div style="margin-bottom:32px;">
+            <div class="bar-row">
+              <div class="bar-label">🔬 Réalité (R)</div>
+              <div class="bar-track"><div class="bar-fill" style="width:61%;background:#2563eb;"></div></div>
+              <div class="bar-value">61%</div>
+            </div>
+            <div class="bar-row">
+              <div class="bar-label">⚙️ Utilité (U)</div>
+              <div class="bar-track"><div class="bar-fill" style="width:68%;background:#059669;"></div></div>
+              <div class="bar-value">68%</div>
+            </div>
+            <div class="bar-row">
+              <div class="bar-label">🤝 Bonté (B)</div>
+              <div class="bar-track"><div class="bar-fill" style="width:57%;background:var(--gold);"></div></div>
+              <div class="bar-value">57%</div>
+            </div>
+          </div>
+          <h3 style="font-size:15px;font-weight:700;margin-bottom:16px;">Score par critère</h3>
+          <div style="font-size:12px;">
+            <div class="bar-row" style="margin-bottom:8px;">
+              <div class="bar-label" style="width:60px;color:#2563eb;font-weight:700;">R1 Exactitude</div>
+              <div class="bar-track"><div class="bar-fill" style="width:58%;background:#93c5fd;"></div></div>
+              <div class="bar-value">58%</div>
+            </div>
+            <div class="bar-row" style="margin-bottom:8px;">
+              <div class="bar-label" style="width:60px;color:#2563eb;font-weight:700;">R2 Sources</div>
+              <div class="bar-track"><div class="bar-fill" style="width:55%;background:#93c5fd;"></div></div>
+              <div class="bar-value">55%</div>
+            </div>
+            <div class="bar-row" style="margin-bottom:8px;">
+              <div class="bar-label" style="width:60px;color:#2563eb;font-weight:700;">R3 Incert.</div>
+              <div class="bar-track"><div class="bar-fill" style="width:52%;background:#93c5fd;"></div></div>
+              <div class="bar-value">52%</div>
+            </div>
+            <div class="bar-row" style="margin-bottom:8px;">
+              <div class="bar-label" style="width:60px;color:#059669;font-weight:700;">U1 Clarté</div>
+              <div class="bar-track"><div class="bar-fill" style="width:72%;background:#6ee7b7;"></div></div>
+              <div class="bar-value">72%</div>
+            </div>
+            <div class="bar-row" style="margin-bottom:8px;">
+              <div class="bar-label" style="width:60px;color:#059669;font-weight:700;">U2 Applic.</div>
+              <div class="bar-track"><div class="bar-fill" style="width:64%;background:#6ee7b7;"></div></div>
+              <div class="bar-value">64%</div>
+            </div>
+            <div class="bar-row" style="margin-bottom:8px;">
+              <div class="bar-label" style="width:60px;color:var(--gold);font-weight:700;">B1 Équilib.</div>
+              <div class="bar-track"><div class="bar-fill" style="width:53%;background:#fde68a;"></div></div>
+              <div class="bar-value">53%</div>
+            </div>
+            <div class="bar-row" style="margin-bottom:8px;">
+              <div class="bar-label" style="width:60px;color:var(--gold);font-weight:700;">B2 Transp.</div>
+              <div class="bar-track"><div class="bar-fill" style="width:61%;background:#fde68a;"></div></div>
+              <div class="bar-value">61%</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Évolution mensuelle -->
+      <div class="card mt-32">
+        <h2 style="font-size:18px;font-weight:700;margin-bottom:4px;">Évolution des évaluations (6 derniers mois)</h2>
+        <p style="font-size:13px;color:var(--gray-400);margin-bottom:24px;">Nombre d'évaluations et score moyen mensuel</p>
+        <canvas id="trendChart" style="max-height:260px;"></canvas>
+      </div>
+    </div>
+  </section>
+
+  <!-- TOP SOURCES -->
+  <section class="section section--gray">
+    <div class="container">
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:32px;">
+
+        <div class="card">
+          <h2 style="font-size:18px;font-weight:700;margin-bottom:4px;">Top sources — Grade A & B</h2>
+          <p style="font-size:13px;color:var(--gray-400);margin-bottom:20px;">Sources avec le meilleur score moyen (min. 10 évaluations)</p>
+          <div>
+            <div class="source-row">
+              <div>
+                <div class="source-name">Nature France</div>
+                <div class="source-meta">Revue scientifique · 47 évaluations</div>
+              </div>
+              <div style="text-align:right;">
+                <div><span class="badge badge--sm badge--A">A</span></div>
+                <div style="font-size:13px;color:var(--gray-600);margin-top:4px;">Score moy. 88,4</div>
+              </div>
+            </div>
+            <div class="source-row">
+              <div>
+                <div class="source-name">Le Monde — Science &amp; Médecine</div>
+                <div class="source-meta">Presse nationale · 312 évaluations</div>
+              </div>
+              <div style="text-align:right;">
+                <div><span class="badge badge--sm badge--A">A</span></div>
+                <div style="font-size:13px;color:var(--gray-600);margin-top:4px;">Score moy. 83,1</div>
+              </div>
+            </div>
+            <div class="source-row">
+              <div>
+                <div class="source-name">Institut Pasteur — Blog</div>
+                <div class="source-meta">Institution · 28 évaluations</div>
+              </div>
+              <div style="text-align:right;">
+                <div><span class="badge badge--sm badge--A">A</span></div>
+                <div style="font-size:13px;color:var(--gray-600);margin-top:4px;">Score moy. 81,7</div>
+              </div>
+            </div>
+            <div class="source-row">
+              <div>
+                <div class="source-name">Libération — Sciences</div>
+                <div class="source-meta">Presse nationale · 189 évaluations</div>
+              </div>
+              <div style="text-align:right;">
+                <div><span class="badge badge--sm badge--B">B</span></div>
+                <div style="font-size:13px;color:var(--gray-600);margin-top:4px;">Score moy. 76,3</div>
+              </div>
+            </div>
+            <div class="source-row">
+              <div>
+                <div class="source-name">The Conversation FR</div>
+                <div class="source-meta">Média académique · 93 évaluations</div>
+              </div>
+              <div style="text-align:right;">
+                <div><span class="badge badge--sm badge--B">B</span></div>
+                <div style="font-size:13px;color:var(--gray-600);margin-top:4px;">Score moy. 74,8</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <h2 style="font-size:18px;font-weight:700;margin-bottom:4px;">Sources récurrentes — Grade D & E</h2>
+          <p style="font-size:13px;color:var(--gray-400);margin-bottom:20px;">Sources signalées pour qualité informationnelle insuffisante</p>
+          <div>
+            <div class="source-row">
+              <div>
+                <div class="source-name">Vérité-Cachée.fr</div>
+                <div class="source-meta">Site non référencé · 34 évaluations</div>
+              </div>
+              <div style="text-align:right;">
+                <div><span class="badge badge--sm badge--E">E</span></div>
+                <div style="font-size:13px;color:var(--gray-600);margin-top:4px;">Score moy. 9,2</div>
+              </div>
+            </div>
+            <div class="source-row">
+              <div>
+                <div class="source-name">CryptoBuzz Daily</div>
+                <div class="source-meta">Blog finance · 61 évaluations</div>
+              </div>
+              <div style="text-align:right;">
+                <div><span class="badge badge--sm badge--D">D</span></div>
+                <div style="font-size:13px;color:var(--gray-600);margin-top:4px;">Score moy. 31,7</div>
+              </div>
+            </div>
+            <div class="source-row">
+              <div>
+                <div class="source-name">SantéNaturelle360</div>
+                <div class="source-meta">Blog bien-être · 44 évaluations</div>
+              </div>
+              <div style="text-align:right;">
+                <div><span class="badge badge--sm badge--D">D</span></div>
+                <div style="font-size:13px;color:var(--gray-600);margin-top:4px;">Score moy. 34,2</div>
+              </div>
+            </div>
+            <div class="source-row">
+              <div>
+                <div class="source-name">PolitiqueVraie.net</div>
+                <div class="source-meta">Blog opinion · 27 évaluations</div>
+              </div>
+              <div style="text-align:right;">
+                <div><span class="badge badge--sm badge--E">E</span></div>
+                <div style="font-size:13px;color:var(--gray-600);margin-top:4px;">Score moy. 18,4</div>
+              </div>
+            </div>
+            <div class="source-row">
+              <div>
+                <div class="source-name">TechAlerte — IA Apocalypse</div>
+                <div class="source-meta">Newsletter · 19 évaluations</div>
+              </div>
+              <div style="text-align:right;">
+                <div><span class="badge badge--sm badge--D">D</span></div>
+                <div style="font-size:13px;color:var(--gray-600);margin-top:4px;">Score moy. 38,1</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- CATEGORIES -->
+  <section class="section">
+    <div class="container">
+      <div class="section-header section-header--center">
+        <div class="section-tag">Par thématique</div>
+        <h2 class="section-title">Score moyen par catégorie de contenu</h2>
+      </div>
+      <div style="max-width:640px;margin:0 auto;">
+        <div class="bar-row" style="margin-bottom:16px;">
+          <div class="bar-label" style="width:200px;">🔬 Articles scientifiques</div>
+          <div class="bar-track" style="height:20px;border-radius:10px;"><div class="bar-fill" style="width:81%;background:var(--grade-a);height:20px;border-radius:10px;"></div></div>
+          <div class="bar-value" style="font-weight:700;">81%</div>
+        </div>
+        <div class="bar-row" style="margin-bottom:16px;">
+          <div class="bar-label" style="width:200px;">📰 Presse nationale</div>
+          <div class="bar-track" style="height:20px;border-radius:10px;"><div class="bar-fill" style="width:72%;background:var(--grade-b);height:20px;border-radius:10px;"></div></div>
+          <div class="bar-value" style="font-weight:700;">72%</div>
+        </div>
+        <div class="bar-row" style="margin-bottom:16px;">
+          <div class="bar-label" style="width:200px;">🏛️ Institutions publiques</div>
+          <div class="bar-track" style="height:20px;border-radius:10px;"><div class="bar-fill" style="width:69%;background:var(--grade-b);height:20px;border-radius:10px;"></div></div>
+          <div class="bar-value" style="font-weight:700;">69%</div>
+        </div>
+        <div class="bar-row" style="margin-bottom:16px;">
+          <div class="bar-label" style="width:200px;">💻 Tech &amp; numérique</div>
+          <div class="bar-track" style="height:20px;border-radius:10px;"><div class="bar-fill" style="width:62%;background:var(--grade-c);height:20px;border-radius:10px;"></div></div>
+          <div class="bar-value" style="font-weight:700;">62%</div>
+        </div>
+        <div class="bar-row" style="margin-bottom:16px;">
+          <div class="bar-label" style="width:200px;">💊 Santé &amp; bien-être</div>
+          <div class="bar-track" style="height:20px;border-radius:10px;"><div class="bar-fill" style="width:54%;background:var(--grade-c);height:20px;border-radius:10px;"></div></div>
+          <div class="bar-value" style="font-weight:700;">54%</div>
+        </div>
+        <div class="bar-row" style="margin-bottom:16px;">
+          <div class="bar-label" style="width:200px;">🏛️ Politique</div>
+          <div class="bar-track" style="height:20px;border-radius:10px;"><div class="bar-fill" style="width:49%;background:var(--grade-d);height:20px;border-radius:10px;"></div></div>
+          <div class="bar-value" style="font-weight:700;">49%</div>
+        </div>
+        <div class="bar-row" style="margin-bottom:16px;">
+          <div class="bar-label" style="width:200px;">💰 Finance &amp; crypto</div>
+          <div class="bar-track" style="height:20px;border-radius:10px;"><div class="bar-fill" style="width:38%;background:var(--grade-d);height:20px;border-radius:10px;"></div></div>
+          <div class="bar-value" style="font-weight:700;">38%</div>
+        </div>
+        <div class="bar-row">
+          <div class="bar-label" style="width:200px;">🌀 Complotisme</div>
+          <div class="bar-track" style="height:20px;border-radius:10px;"><div class="bar-fill" style="width:12%;background:var(--grade-e);height:20px;border-radius:10px;"></div></div>
+          <div class="bar-value" style="font-weight:700;">12%</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="section section--gray">
+    <div class="container">
+      <div class="cta-banner">
+        <h2>Contribuez à l'observatoire</h2>
+        <p>Chaque évaluation enrichit la base de données publique et améliore notre compréhension collective de la qualité informationnelle.</p>
+        <a href="api.html" class="btn btn--gold">Intégrer Info-Score</a>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__grid">
+        <div>
+          <div style="display:flex;align-items:center;gap:10px;margin-bottom:12px;">
+            <div style="background:var(--gold);width:36px;height:36px;border-radius:6px;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:16px;color:var(--navy-dark);">IS</div>
+            <div class="footer__brand-name">Info-Score</div>
+          </div>
+          <p class="footer__brand-desc">Organisme de certification indépendant de la qualité informationnelle. Association loi 1901.</p>
+          <a href="mailto:contact@info-score.org" style="font-size:14px;color:rgba(255,255,255,.6);">contact@info-score.org</a>
+        </div>
+        <div>
+          <div class="footer__col-title">Navigation</div>
+          <ul class="footer__links">
+            <li><a href="index.html">Accueil</a></li>
+            <li><a href="referentiel.html">Référentiel</a></li>
+            <li><a href="statistiques.html">Statistiques</a></li>
+            <li><a href="api.html">API</a></li>
+            <li><a href="tarifs.html">Tarifs</a></li>
+          </ul>
+        </div>
+        <div>
+          <div class="footer__col-title">Données</div>
+          <ul class="footer__links">
+            <li><a href="#">Export CSV</a></li>
+            <li><a href="api.html">API Statistiques</a></li>
+            <li><a href="https://github.com/Info-Score/info-score" target="_blank" rel="noopener">GitHub</a></li>
+          </ul>
+        </div>
+        <div>
+          <div class="footer__col-title">Contact</div>
+          <ul class="footer__links">
+            <li><a href="mailto:contact@info-score.org">Nous écrire</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer__bottom">
+        <div>© 2026 Association Info-Score — Association loi 1901 — Organisme de certification indépendant</div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Donut chart
+    const donutCtx = document.getElementById('gradeDonut').getContext('2d');
+    new Chart(donutCtx, {
+      type: 'doughnut',
+      data: {
+        labels: ['A — Exemplaire', 'B — Fiable', 'C — Acceptable', 'D — Insuffisant', 'E — Obscurant', 'N — Non évaluable'],
+        datasets: [{
+          data: [12.4, 24.1, 28.7, 19.3, 11.2, 4.3],
+          backgroundColor: ['#16a34a', '#2563eb', '#ca8a04', '#ea580c', '#dc2626', '#6b7280'],
+          borderWidth: 2,
+          borderColor: '#ffffff',
+        }]
+      },
+      options: {
+        cutout: '65%',
+        plugins: {
+          legend: { display: false },
+          tooltip: {
+            callbacks: {
+              label: (ctx) => ` ${ctx.label}: ${ctx.parsed}%`
+            }
+          }
+        }
+      }
+    });
+
+    // Trend chart
+    const trendCtx = document.getElementById('trendChart').getContext('2d');
+    new Chart(trendCtx, {
+      type: 'bar',
+      data: {
+        labels: ['Nov. 2025', 'Déc. 2025', 'Jan. 2026', 'Fév. 2026', 'Mar. 2026', 'Avr. 2026'],
+        datasets: [
+          {
+            label: 'Évaluations',
+            data: [1240, 1580, 1890, 2210, 2640, 2910],
+            backgroundColor: 'rgba(26, 54, 93, 0.15)',
+            borderColor: '#1a365d',
+            borderWidth: 2,
+            yAxisID: 'y',
+          },
+          {
+            label: 'Score moyen',
+            data: [59.8, 60.4, 61.1, 62.0, 62.4, 62.4],
+            type: 'line',
+            borderColor: '#c9a227',
+            backgroundColor: 'rgba(201,162,39,.1)',
+            tension: 0.4,
+            pointBackgroundColor: '#c9a227',
+            pointRadius: 5,
+            yAxisID: 'y2',
+          }
+        ]
+      },
+      options: {
+        responsive: true,
+        plugins: { legend: { position: 'top' } },
+        scales: {
+          y: {
+            type: 'linear',
+            position: 'left',
+            title: { display: true, text: 'Évaluations' },
+            beginAtZero: true,
+          },
+          y2: {
+            type: 'linear',
+            position: 'right',
+            min: 50,
+            max: 80,
+            title: { display: true, text: 'Score moyen' },
+            grid: { drawOnChartArea: false },
+          }
+        }
+      }
+    });
+  </script>
+</body>
+</html>
