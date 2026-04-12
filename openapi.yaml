@@ -1,0 +1,482 @@
+openapi: 3.0.3
+info:
+  title: API REST Info-Score
+  description: |
+    API REST de certification informationnelle Info-Score.
+
+    Intégrez la certification RUB dans vos outils en quelques lignes.
+    Retourne un score sur 12 critères, un grade de A à N, et optionnellement un certificat JSON signé.
+
+    **Base URL** : `https://api.info-score.org/v1`
+
+    **Authentification** : toutes les requêtes doivent inclure un en-tête `Authorization: Bearer is_sk_votre_cle_api`.
+  version: "1.0"
+  contact:
+    email: contact@info-score.org
+    url: https://info-score.org
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0
+
+servers:
+  - url: https://api.info-score.org/v1
+    description: Production
+
+security:
+  - BearerAuth: []
+
+components:
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      description: "Clé API Info-Score au format `is_sk_*`. Disponible dans votre tableau de bord après inscription."
+
+  schemas:
+    ScoreDimensions:
+      type: object
+      properties:
+        R:
+          type: object
+          properties:
+            score: { type: number, example: 79.2 }
+            weight: { type: number, example: 0.45 }
+        U:
+          type: object
+          properties:
+            score: { type: number, example: 80.0 }
+            weight: { type: number, example: 0.25 }
+        B:
+          type: object
+          properties:
+            score: { type: number, example: 73.3 }
+            weight: { type: number, example: 0.30 }
+
+    CriterionResult:
+      type: object
+      properties:
+        note:
+          type: integer
+          minimum: 0
+          maximum: 3
+          example: 2
+        coefficient:
+          type: integer
+          example: 3
+        points:
+          type: integer
+          example: 6
+        justification:
+          type: string
+          example: "Les affirmations principales s'appuient sur le rapport GIEC AR6."
+
+    Score:
+      type: object
+      properties:
+        total:
+          type: number
+          description: Score global sur 100
+          example: 77.6
+        grade:
+          type: string
+          enum: [A, B, C, D, E, N]
+          example: B
+        grade_label:
+          type: string
+          example: Fiable
+        max:
+          type: integer
+          example: 100
+        dimensions:
+          $ref: '#/components/schemas/ScoreDimensions'
+
+    EvaluationFull:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Identifiant unique de l'évaluation (format `eval_*`)
+          example: eval_01J8X4K7Q2MWNVF3HB9CKPZGRD
+        status:
+          type: string
+          enum: [completed, pending, failed]
+          example: completed
+        created_at:
+          type: string
+          format: date-time
+          example: "2026-04-12T14:32:07Z"
+        url:
+          type: string
+          nullable: true
+          example: "https://www.lemonde.fr/science/article/exemple"
+        title:
+          type: string
+          nullable: true
+          example: "Réchauffement climatique : les données du GIEC 2025"
+        language:
+          type: string
+          example: fr
+        score:
+          $ref: '#/components/schemas/Score'
+        criteria:
+          type: object
+          description: Résultats détaillés par critère (R1–R5, U1–U3, B1–B4)
+          additionalProperties:
+            $ref: '#/components/schemas/CriterionResult'
+          example:
+            R1: { note: 2, coefficient: 3, points: 6, justification: "Les affirmations principales s'appuient sur le rapport GIEC AR6." }
+            R2: { note: 3, coefficient: 3, points: 9, justification: "Sources primaires explicitement citées avec liens." }
+        raw_points:
+          type: integer
+          example: 57
+        max_points:
+          type: integer
+          example: 87
+        model:
+          type: string
+          example: claude-opus-4-6
+        certificate:
+          nullable: true
+          $ref: '#/components/schemas/Certificate'
+
+    EvaluationSummary:
+      type: object
+      properties:
+        id:
+          type: string
+          example: eval_01J8X4K7Q2MWNVF3HB9CKPZGRD
+        status:
+          type: string
+          enum: [completed, pending, failed]
+          example: completed
+        created_at:
+          type: string
+          format: date-time
+          example: "2026-04-12T14:32:07Z"
+        url:
+          type: string
+          nullable: true
+          example: "https://www.lemonde.fr/science/article/exemple"
+        title:
+          type: string
+          nullable: true
+          example: "Réchauffement climatique : les données du GIEC 2025"
+        score:
+          type: object
+          properties:
+            total: { type: number, example: 77.6 }
+            grade: { type: string, example: B }
+            grade_label: { type: string, example: Fiable }
+
+    Certificate:
+      type: object
+      properties:
+        id:
+          type: string
+          example: cert_01J8X4KBNJRW5PVTQ7DFHM23SY
+        evaluation_id:
+          type: string
+          example: eval_01J8X4K7Q2MWNVF3HB9CKPZGRD
+        issued_at:
+          type: string
+          format: date-time
+          example: "2026-04-12T14:32:18Z"
+        expires_at:
+          type: string
+          format: date-time
+          example: "2027-04-12T14:32:18Z"
+        issuer:
+          type: string
+          example: Association Info-Score
+        subject:
+          type: object
+          properties:
+            url: { type: string, example: "https://www.lemonde.fr/science/article/exemple" }
+            title: { type: string, example: "Réchauffement climatique : les données du GIEC 2025" }
+            content_hash: { type: string, example: "sha256:a3f4b2c1d8e9f0a1b2c3d4e5f6a7b8c9d0e1f2a3" }
+        grade:
+          type: string
+          example: B
+        score:
+          type: number
+          example: 77.6
+        version:
+          type: string
+          example: "1.0"
+        signature:
+          type: string
+          example: "is_sig_MEQCIBNkQ7mP2vX4wR9jKL1mNqAp3..."
+        public_url:
+          type: string
+          example: "https://info-score.org/cert/cert_01J8X4KBNJRW5PVTQ7DFHM23SY"
+        badge_url:
+          type: string
+          example: "https://api.info-score.org/v1/badge/cert_01J8X4KBNJRW5PVTQ7DFHM23SY.svg"
+
+    Stats:
+      type: object
+      properties:
+        total_evaluations:
+          type: integer
+          example: 12470
+        average_score:
+          type: number
+          example: 62.4
+        grade_distribution:
+          type: object
+          additionalProperties:
+            type: object
+            properties:
+              count: { type: integer }
+              percentage: { type: number }
+          example:
+            A: { count: 1547, percentage: 12.4 }
+            B: { count: 3005, percentage: 24.1 }
+            C: { count: 3579, percentage: 28.7 }
+            D: { count: 2407, percentage: 19.3 }
+            E: { count: 1397, percentage: 11.2 }
+            N: { count: 535,  percentage: 4.3 }
+        dimension_averages:
+          type: object
+          properties:
+            R: { type: number, example: 61.0 }
+            U: { type: number, example: 68.0 }
+            B: { type: number, example: 57.0 }
+        last_updated:
+          type: string
+          format: date-time
+          example: "2026-04-12T06:00:00Z"
+
+    Error:
+      type: object
+      properties:
+        error:
+          type: object
+          properties:
+            code:
+              type: string
+              example: insufficient_credits
+            message:
+              type: string
+              example: "Votre solde est insuffisant."
+            details:
+              type: object
+              nullable: true
+              example:
+                balance: 0.30
+                required: 0.50
+
+paths:
+  /evaluate:
+    post:
+      summary: Soumettre un contenu à l'évaluation RUB
+      description: |
+        Évalue un contenu selon le cadre RUB (Réalité, Utilité, Bonté) sur 12 critères.
+        Retourne un score sur 100, un grade de A à N, et les justifications par critère.
+
+        **Coût** : 0,50 € / requête. Optionnellement +0,50 € pour générer un certificat signé.
+
+        L'un des paramètres `url` ou `text` est obligatoire.
+      operationId: evaluate
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                url:
+                  type: string
+                  description: URL publique du contenu à évaluer
+                  example: "https://www.lemonde.fr/science/article/exemple"
+                text:
+                  type: string
+                  description: Texte brut du contenu (minimum 200 mots)
+                  example: "Texte de l'article à évaluer..."
+                title:
+                  type: string
+                  description: Titre du contenu (utilisé si `text` est fourni)
+                  example: "Mon article sur le climat"
+                language:
+                  type: string
+                  description: "Code langue ISO 639-1. Supporte : `fr`, `en`, `es`, `de`. Défaut : `fr`"
+                  default: fr
+                  enum: [fr, en, es, de]
+                  example: fr
+                with_certificate:
+                  type: boolean
+                  description: "Si `true`, génère un certificat JSON signé (+0,50 €). Défaut : `false`"
+                  default: false
+            example:
+              url: "https://www.lemonde.fr/science/article/exemple"
+              language: fr
+              with_certificate: false
+      responses:
+        "200":
+          description: Évaluation complétée avec succès
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EvaluationFull'
+        "400":
+          description: Paramètres manquants ou invalides
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              example:
+                error: { code: invalid_request, message: "L'un des paramètres `url` ou `text` est obligatoire." }
+        "401":
+          description: Clé API absente ou invalide
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        "402":
+          description: Solde insuffisant
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        "422":
+          description: Contenu inférieur à 200 mots — non évaluable
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        "429":
+          description: Trop de requêtes (max 60/minute)
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        "500":
+          description: Erreur serveur interne
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /score/{id}:
+    get:
+      summary: Récupérer les résultats d'une évaluation
+      description: |
+        Récupère les résultats d'une évaluation existante par son identifiant.
+        Toutes les évaluations publiques sont accessibles gratuitement.
+
+        **Coût** : gratuit.
+      operationId: getScore
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: "Identifiant de l'évaluation (format `eval_*`)"
+          schema:
+            type: string
+            example: eval_01J8X4K7Q2MWNVF3HB9CKPZGRD
+      responses:
+        "200":
+          description: Résultats de l'évaluation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EvaluationSummary'
+        "401":
+          description: Clé API absente ou invalide
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        "404":
+          description: Évaluation introuvable
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /certificate/{id}:
+    get:
+      summary: Récupérer le certificat signé d'une évaluation
+      description: |
+        Récupère le certificat JSON signé d'une évaluation. Le certificat doit avoir été
+        demandé lors de l'évaluation (`with_certificate: true`) ou via une commande séparée.
+
+        **Coût** : gratuit si déjà généré.
+      operationId: getCertificate
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: "Identifiant de l'évaluation (format `eval_*`)"
+          schema:
+            type: string
+            example: eval_01J8X4K7Q2MWNVF3HB9CKPZGRD
+        - name: format
+          in: query
+          required: false
+          description: "`json` (défaut) ou `pdf` (certification Premium uniquement)"
+          schema:
+            type: string
+            enum: [json, pdf]
+            default: json
+      responses:
+        "200":
+          description: Certificat signé
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  certificate:
+                    $ref: '#/components/schemas/Certificate'
+        "401":
+          description: Clé API absente ou invalide
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        "404":
+          description: Certificat introuvable ou non généré
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /stats:
+    get:
+      summary: Statistiques globales de la plateforme
+      description: |
+        Retourne les statistiques globales de la plateforme Info-Score.
+        Données mises à jour toutes les heures.
+
+        **Coût** : gratuit.
+      operationId: getStats
+      parameters:
+        - name: since
+          in: query
+          required: false
+          description: Date ISO 8601 — filtre les statistiques depuis cette date
+          schema:
+            type: string
+            format: date-time
+            example: "2026-01-01T00:00:00Z"
+        - name: domain
+          in: query
+          required: false
+          description: "Filtre par domaine source (ex: `lemonde.fr`)"
+          schema:
+            type: string
+            example: lemonde.fr
+      responses:
+        "200":
+          description: Statistiques globales
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Stats'
+        "401":
+          description: Clé API absente ou invalide
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
